@@ -12,6 +12,24 @@ function makeJWT(user) {
   return token;
 }
 
+function tokenCheck(re1, res, next) {
+  console.log('checking token');
+  if (!req.body.token) {
+    res.sendStatus(403);
+    res.send(JSON.stringify({ message: 'no token, no web site' }))
+  }
+  else {
+    jwt.verify(req.body.token, config.secret, (err, decoded) => {
+      if (err) {
+        res.sendStatus(403).json({ message: 'cant authorize token provided, sorry' })
+      }
+
+      req.decoded = decoded;
+      next();
+    })
+  }
+}
+
 /* GET users listing. */
 router.get('/', (req, res, next) => {
   res.send('respond with a resource');
@@ -32,5 +50,11 @@ router.post('/', (req, res) => {
       res.json({ message: err })
   });
 });
+
+router.get('/dashboard', tokenCheck, (req, res, next) => {
+  console.log('hello from dashboard');
+  res.send('hello from dashboard.')
+})
+
 
 module.exports = router;

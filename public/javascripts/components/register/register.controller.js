@@ -12,12 +12,7 @@
       $scope.handleRegistration = function() {
         console.log($scope.form);
 
-        UserService.createUser($scope.form).then(data => {
-          console.log('success ', data);
-        })
-        .catch(err => {
-          console.log(err);
-        });
+        return UserService.createUser($scope.form)
       }
     }
 
