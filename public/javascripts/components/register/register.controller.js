@@ -9,15 +9,14 @@
 
       $scope.form = {};
 
-      $scope.handleRegistration = function(data) {
+      $scope.handleRegistration = function() {
         console.log($scope.form);
 
-        // UserService.getUser($scope.form.email).then(data => {
-        //   console.log(data);
-        // });
-
         UserService.createUser($scope.form).then(data => {
-          console.log(data);
+          console.log('success ', data);
+        })
+        .catch(err => {
+          console.log(err);
         });
       }
     }

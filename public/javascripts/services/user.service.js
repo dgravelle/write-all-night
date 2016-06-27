@@ -14,11 +14,7 @@
       }
 
       self.createUser = function (user) {
-        return $http
-          .post('/users', user)
-          .then((data) => {
-            console.log(data);
-          })
+        return $http.post('/users', user);
       }
     }
 
