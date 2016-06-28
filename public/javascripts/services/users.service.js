@@ -6,7 +6,9 @@
     .module('app')
     .service('UserService', UserService)
 
-    function UserService($http) {
+    UserService.$inject = ['$http', '$q', '$window'];
+
+    function UserService($http, $q, $window) {
       const self = this;
 
       self.login = function (user) {
@@ -14,14 +16,36 @@
         return $http.post('/users/login', user);
       }
 
+      self.getUser = function(id) {
+        return $http.get('/users/' + id);
+      }
+
       self.createUser = function (user) {
-        return $http
-          .post('/users/signup', user)
-          .then((data) => {
-            console.log(data);
-          })
+        var deferred = $q.defer();
+
+        return $http.post('/users', user).then(data => {
+
+          var user = {
+            id: data.data.id,
+            token: data.data.token,
+            user: data.data.email
+          }
+
+          user = JSON.stringify(user);
+
+          $window.localStorage['user'] = user;
+
+          deferred.resolve(user);
+
+          return deferred.promise;
+        })
+        .catch(err => {
+          console.log(err);
+          deferred.reject(err);
+
+          return deferred.promise;
+        });
       }
     }
-
 
 })()

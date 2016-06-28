@@ -10,6 +10,7 @@
       return {
         request: function (config) {
           // debugger;
+
           var token = $window.localStorage.getItem('user');
 
           config.headers['X-Requested-With'] = 'XMLHttpRequest';
@@ -26,7 +27,7 @@
           return err;
         },
         response: function(config){
-          // debugger
+          debugger
           return config;
         },
         responseError: function(err){
