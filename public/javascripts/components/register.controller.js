@@ -12,9 +12,9 @@
       $scope.handleRegistration = function(data) {
         console.log($scope.form);
 
-        // UserService.getUser($scope.form.email).then(data => {
-        //   console.log(data);
-        // });
+        UserService.login(user).then(data => {
+
+        });
 
         UserService.createUser($scope.form).then(data => {
           console.log(data);

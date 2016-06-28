@@ -5,6 +5,14 @@
     .config(function($routeProvider, $httpProvider) {
       $routeProvider
         .when('/', {
+          templateUrl: 'views/home.html',
+        })
+        .when('/login', {
+          templateUrl: 'views/login.html',
+          controller: 'LoginController',
+          controllerAs: 'loginCtrl'
+        })
+        .when('/signup', {
           templateUrl: 'views/register.html',
           controller: 'RegisterController'
         })
@@ -26,6 +34,6 @@
           $location.path('/');
         }
       })
-    })
+    });
 
 })()

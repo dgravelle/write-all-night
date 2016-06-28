@@ -7,10 +7,20 @@ router.get('/', (req, res, next) => {
   res.send('respond with a resource');
 });
 
-router.post('/', (req, res) => {
+router.post('/signup', (req, res) => {
   console.log(req.body);
 
   Users.createUser(req.body, (err, data) => {
+    // do stuff
+    console.log(data);
+    res.json(data);
+  })
+})
+
+router.post('/login', (req, res) => {
+  console.log(req.body);
+
+  Users.authenticateUser(req.body, (err, data) => {
     // do stuff
     console.log(data);
     res.json(data);
