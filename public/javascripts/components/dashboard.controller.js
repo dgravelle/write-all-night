@@ -4,9 +4,11 @@
     .module('app')
     .controller('DashboardController', DashboardController)
 
-    DashboardController.$inject = ['$scope'];
+    DashboardController.$inject = ['$scope', 'UserService', 'getUser'];
 
-    function DashboardController($scope) {
-      $scope.hello = 'hello'
+    function DashboardController($scope, UserService, getUser) {
+      $scope.currentUser = getUser;
+
+      var vm = this;
     }
 })()

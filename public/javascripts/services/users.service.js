@@ -38,8 +38,17 @@
         });
       }
 
+      self.currentUser = {};
+
+      self.setCurrentUser = function(user) {
+        return this.currentUser = user;
+      }
+
       self.getUser = function(id) {
-        return $http.get('/users/' + id);
+        return $http.get('/users/' + id).then(user => {
+          this.setCurrentUser(user.data);
+          return this.currentUser;
+        });
       }
 
       self.createUser = function (user) {
