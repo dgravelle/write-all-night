@@ -28,16 +28,25 @@ Users.createUser = (data) => {
   });
 }
 
-Users.authenticateUser = (email, password, callback) => {
-  Users.select().where({ email: email }).then((user) => {
-    if (!user) {
-      return callback('Sorry, that email and password does not match');
-    }
-    bcrypt.compare(password, user.pass_hash, (err, res) => {
-      if (err || !res) {
-        return callback('Sorry, that email and password does not match');
+Users.authenticateUser = (email, password) => {
+  console.log('authenticating');
+  return new Promise((resolve, reject) => {
+    Users.select().where({ email: email }).first().then((user) => {
+      console.log(user);
+      if (!user) {
+        reject('Sorry, that email and password does not match');
       }
-      callback(undefined, user);
+      bcrypt.compare(password, user.pass_hash, (err, res) => {
+        if (err || !res) {
+          reject('Sorry, that email and password does not match');
+        }
+        user = {
+          id: user.id,
+          email: user.email,
+          name: user.name
+        }
+        resolve(user);
+      });
     });
   });
 }

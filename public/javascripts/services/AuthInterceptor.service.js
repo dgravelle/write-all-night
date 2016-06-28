@@ -23,15 +23,15 @@
           return config
         },
         requestError: function(err){
-          debugger
+          // debugger
           return err;
         },
         response: function(config){
-          debugger
+          // debugger
           return config;
         },
         responseError: function(err){
-          debugger
+          // debugger
           return err;
         }
       }
