@@ -12,20 +12,23 @@ function makeJWT(user) {
   return token;
 }
 
-function tokenCheck(re1, res, next) {
+function tokenCheck(req, res, next) {
   console.log('checking token');
-  if (!req.body.token) {
-    res.sendStatus(403);
-    res.send(JSON.stringify({ message: 'no token, no web site' }))
+  console.log(req.headers);
+  if (!req.headers.authorization) {
+    res.status(403);
+    res.json({ message: 'no token, no web site' });
   }
   else {
-    jwt.verify(req.body.token, config.secret, (err, decoded) => {
+    jwt.verify(req.headers.authorization, config.secret, (err, decoded) => {
       if (err) {
-        res.sendStatus(403).json({ message: 'cant authorize token provided, sorry' })
+        return res.status(403).json({ message: 'cant authorize token provided, sorry' })
+      }
+      else {
+        req.decoded = decoded;
+        next();
       }
 
-      req.decoded = decoded;
-      next();
     })
   }
 }
@@ -40,9 +43,15 @@ router.post('/', (req, res) => {
 
   Users.createUser(req.body).then(data => {
     var userToken = makeJWT(data);
+    // console.log(data);
 
-    console.log('success : ', data);
-    res.json({ token: userToken });
+    var userInfo = {
+      id: data.id,
+      token: userToken,
+      user: data.email
+    }
+    console.log('userinfo: ', userInfo);
+    res.json(userInfo);
   })
   .catch(err => {
       console.log('error from routes: ', err);
@@ -51,9 +60,17 @@ router.post('/', (req, res) => {
   });
 });
 
-router.get('/dashboard', tokenCheck, (req, res, next) => {
-  console.log('hello from dashboard');
-  res.send('hello from dashboard.')
+router.get('/:id', tokenCheck, (req, res, next) => {
+  console.log('req.decoded: ', req.decoded);
+
+  Users.where({ id: req.decoded.id }).first().then(user => {
+    console.log('user: ', user);
+
+    res.sendStatus(200).json({ id: user.id, email: user.email });
+  })
+  .catch(err => {
+    console.log('error in get user: ', err);
+  })
 })
 
 

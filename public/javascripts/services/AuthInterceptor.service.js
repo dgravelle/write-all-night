@@ -4,14 +4,18 @@
     .module('app')
     .service('AuthInterceptor', AuthInterceptor)
 
-    function AuthInterceptor() {
+    function AuthInterceptor($window) {
       return {
         request: function (config) {
-          
-          var token = localStorage.getItem('token');
+          debugger;
+          var token = $window.localStorage.getItem('user');
+
+          config.headers['X-Requested-With'] = 'XMLHttpRequest';
+
+          token = JSON.parse(token);
 
           if (token)
-            config.headers.Authorization = "Bearer" + token;
+            config.headers.Authorization = token.token;
 
           return config
         },

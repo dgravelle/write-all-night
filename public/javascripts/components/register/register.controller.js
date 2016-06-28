@@ -4,15 +4,20 @@
     .module('app')
     .controller('RegisterController', RegisterController);
 
-    function RegisterController($scope, UserService) {
+    function RegisterController($scope, $location, UserService) {
       $scope.hello = 'hello';
 
       $scope.form = {};
 
       $scope.handleRegistration = function() {
-        console.log($scope.form);
-
-        return UserService.createUser($scope.form)
+        UserService.createUser($scope.form).then(data => {
+          data = JSON.parse(data);
+          $location.path('/users/' + data.id);
+        })
+        .catch(err => {
+          console.log(err);
+          $location.path('/');
+        })
       }
     }
 
