@@ -1,7 +1,7 @@
 (function () {
 
   angular
-    .module('app', ['ngRoute'])
+    .module('app', ['ngRoute', 'ngMaterial'])
     .config(function($routeProvider, $httpProvider) {
       $routeProvider
         .when('/', {
@@ -18,6 +18,7 @@
         })
         .when('/users/:id', {
           templateUrl: 'views/dashboard.html',
+          controller: 'DashboardController',
           restricted: true,
           resolve: {
             getUser: function (UserService, $route) {

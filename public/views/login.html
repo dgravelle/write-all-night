@@ -1,11 +1,17 @@
-<form ng-submit="loginCtrl.login(user)">
-  <div class="form-group">
-    <label for="email" class="label-control">Email</label>
-    <input id="email" type="text" ng-model="user.email" />
-  </div>
-  <div class="form-group">
-    <label for="password" class="label-control">Password</label>
-    <input id="password" type="password" ng-model="user.password" />
-  </div>
-  <input type="submit" value="submit" />
-</form>
+<md-content layout="row" layout-align="center">
+  <md-card flex="50" layout-padding>
+    <form ng-submit="loginCtrl.login(user)">
+      <h2>Login</h2>
+      <md-input-container class="md-block">
+        <label for="email" >Email</label>
+        <input id="email" type="text" ng-model="user.email" />
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label for="password" class="label-control">Password</label>
+        <input id="password" type="password" ng-model="user.password" />
+      </md-input-container>
+
+      <md-button class="md-raised md-primary" type="submit" />Submit</md-button>
+    </form>
+  </md-card>
+</md-content>

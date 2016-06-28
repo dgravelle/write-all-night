@@ -16,7 +16,7 @@
         // console.log(user);
         UserService.login(user).then(user => {
           console.log(user);
-          // user = JSON.parse(user);
+          user = JSON.parse(user);
           $location.path('/users/' + user.id)
         })
         .catch(err => {
