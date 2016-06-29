@@ -23,12 +23,12 @@
 </head>
 <body ng-app="app">
   <div ng-controller="NavBar">
-    <md-nav-bar md-selected-nav-item="currentNavItem" >
-
+    <md-nav-bar md-selected-nav-item="currentNavItem" aria-label="navigation">
       <div layout="row" layout-alignment="end center" flex="50" aria-label>
         <md-nav-item md-nav-href="/#/" name="home">Home</md-nav-item>
         <md-nav-item md-nav-href="/#/signup" name="signup" ng-hide="loggedIn">Signup</md-nav-item>
         <md-nav-item md-nav-href="/#/login" name="login" ng-hide="loggedIn">Login</md-nav-item>
+        <md-nav-item md-nav-click="logOut()" name="login" ng-show="loggedIn">Logout</md-nav-item>
       </div>
     </md-nav-bar>
   </div>

@@ -11,6 +11,10 @@
     function UserService($http, $q, $window) {
       const self = this;
 
+      self.logOut = function() {
+        return localStorage.clear();
+      }
+
       self.login = function (user) {
         var deferred = $q.defer();
 
