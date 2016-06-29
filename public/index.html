@@ -13,22 +13,25 @@
   <script src="node_modules/angular-material/angular-material.js"></script>
 
   <script src="javascripts/app.js"></script>
-  <script src="javascripts/components/register.controller.js"></script>
-  <script src="javascripts/components/login.controller.js"></script>
-  <script src="javascripts/components/dashboard.controller.js"></script>
+  <script src="javascripts/controllers/navbar.controller.js"></script>
+  <script src="javascripts/controllers/register.controller.js"></script>
+  <script src="javascripts/controllers/login.controller.js"></script>
+  <script src="javascripts/controllers/dashboard.controller.js"></script>
   <script src="javascripts/services/users.service.js"></script>
   <script src="javascripts/services/AuthInterceptor.service.js"></script>
 
 </head>
 <body ng-app="app">
-  <md-nav-bar md-selected-nav-item="currentNavItem">
-    <div layout="row" layout-alignment="end center" flex="50" aria-label>
-      <md-nav-item md-nav-href="/#/" name="home">Home</md-nav-item>
-      <md-nav-item md-nav-href="/#/signup" name="signup">Signup</md-nav-item>
-      <md-nav-item md-nav-href="/#/login" name="login">Login</md-nav-item>
-    </div>
-  </md-nav-bar>
+  <div ng-controller="NavBar">
+    <md-nav-bar md-selected-nav-item="currentNavItem" >
 
+      <div layout="row" layout-alignment="end center" flex="50" aria-label>
+        <md-nav-item md-nav-href="/#/" name="home">Home</md-nav-item>
+        <md-nav-item md-nav-href="/#/signup" name="signup" ng-hide="loggedIn">Signup</md-nav-item>
+        <md-nav-item md-nav-href="/#/login" name="login" ng-hide="loggedIn">Login</md-nav-item>
+      </div>
+    </md-nav-bar>
+  </div>
   <div ng-view></div>
 
 </body>
