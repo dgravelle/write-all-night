@@ -4,13 +4,16 @@
   <meta charset="UTF-8">
   <title>Write All Night</title>
 
-  <link rel="stylesheet" href="node_modules/angular-material/angular-material.css">
+  <!-- <link rel="stylesheet" href="node_modules/angular-material/angular-material.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.0-rc.5/angular-material.css">
 
-  <script src="node_modules/angular/angular.js"></script>
-  <script src="node_modules/angular-route/angular-route.js"></script>
-  <script src="node_modules/angular-aria/angular-aria.js"></script>
-  <script src="node_modules/angular-animate/angular-animate.js"></script>
-  <script src="node_modules/angular-material/angular-material.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-route.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.0-rc.5/angular-material.js"></script>
 
   <script src="javascripts/app.js"></script>
   <script src="javascripts/controllers/navbar.controller.js"></script>
@@ -19,20 +22,21 @@
   <script src="javascripts/controllers/dashboard.controller.js"></script>
   <script src="javascripts/services/users.service.js"></script>
   <script src="javascripts/services/AuthInterceptor.service.js"></script>
-
 </head>
 <body ng-app="app">
   <div ng-controller="NavBar">
-    <md-nav-bar md-selected-nav-item="currentNavItem" aria-label="navigation">
-      <div layout="row" layout-alignment="end center" flex="50" aria-label>
+    <md-nav-bar ng-show="!loggedIn" md-selected-nav-item="currentNavItem" >
         <md-nav-item md-nav-href="/#/" name="home">Home</md-nav-item>
-        <md-nav-item md-nav-href="/#/signup" name="signup" ng-hide="loggedIn">Signup</md-nav-item>
-        <md-nav-item md-nav-href="/#/login" name="login" ng-hide="loggedIn">Login</md-nav-item>
-        <md-nav-item md-nav-click="logOut()" name="login" ng-show="loggedIn">Logout</md-nav-item>
-      </div>
+        <md-nav-item md-nav-href="/#/signup" name="signup" >Signup</md-nav-item>
+        <md-nav-item md-nav-href="/#/login" name="login" >Login</md-nav-item>
+    </md-nav-bar>
+    <md-nav-bar ng-show="loggedIn" md-selected-nav-item="currentNavItem" aria-label="navigation">
+        <md-nav-item md-nav-href="/#/users/" name="home">Dashboard</md-nav-item>
+        <md-nav-item md-nav-click="logOut()" name="login" >Logout</md-nav-item>
     </md-nav-bar>
   </div>
   <div ng-view></div>
+
 
 </body>
 </html>
