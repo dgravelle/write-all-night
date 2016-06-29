@@ -64,7 +64,7 @@ router.get('/:id', tokenCheck, (req, res, next) => {
   Users.where({ id: req.decoded.id }).first().then(user => {
     console.log('user: ', user);
 
-    res.sendStatus(200).json({ id: user.id, email: user.email });
+    res.json({ id: user.id, email: user.email });
   })
   .catch(err => {
     console.log('error in get user: ', err);
