@@ -29,8 +29,8 @@
         })
         .when('/users/:id/new-story', {
           templateUrl: 'views/new-story.html',
-          // controller: 'StoryController',
-          // restricted: true
+          controller: 'StoriesController',
+          restricted: true
         });
         $httpProvider.interceptors.push('AuthInterceptor');
     })
