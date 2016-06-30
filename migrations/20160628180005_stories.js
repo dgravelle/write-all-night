@@ -4,9 +4,12 @@ exports.up = function(knex, Promise) {
     knex.schema.createTable('stories', t => {
       t.increments();
       t.string('title');
-      t.text('story');
+      t.text('story_content');
       t.integer('word_goal');
-      t.date('deadline');
+      t.boolean('deadline')
+      t.date('deadlineStarts');
+      t.date('deadlineEnds');
+      t.integer('wordGoal');
     })
   ])
 };

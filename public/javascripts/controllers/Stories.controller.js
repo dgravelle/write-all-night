@@ -7,9 +7,15 @@
     StoriesController.$inject = ['$scope', 'StoriesService'];
 
     function StoriesController($scope, StoriesService) {
-      console.log('hello');
+
+      // $scope.newStory = {}
+
       $scope.addNewStory = function(newStory) {
+        if (!newStory) {
+          return 'yo finish filling out the form';
+        }
         console.log(newStory);
+        return StoriesService.newStory(newStory);
       }
     }
 })()

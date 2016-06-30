@@ -35,7 +35,7 @@
         $httpProvider.interceptors.push('AuthInterceptor');
     })
 
-    .run(function($rootScope, $location, $window, UserService) {
+    .run(function($rootScope, $location, $window) {
       $rootScope.$on('$routeChangeStart', function (event, next, current) {
         if (next.restricted && !$window.localStorage.getItem('user')) {
           $location.path('/');
