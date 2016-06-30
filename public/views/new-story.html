@@ -1,0 +1,34 @@
+
+<md-content layout="row" layout-align="center">
+  <md-card layout="column" flex="50" layout-padding>
+    <form  ng-submit="addNewStory(newStory)">
+      <h1>Start a new story!</h1>
+      <md-input-container>
+        <label for="title">Title</label>
+        <input id="title" type="text" name="title" ng-model="newStory.title">
+      </md-input-container>
+      <div></div>
+      <md-input-container>
+        <label for="title">Deadline?</label>
+        <br>
+        <md-switch ng-model="newStory.deadline">Yes</md-switch>
+      </md-input-container>
+      <div ng-show="newStory.deadline">
+        <h2>Pick a starting date</h2>
+          <label for="startDate">Start date</label>
+          <md-datepicker id="startDate" ng-model="newStory.deadlineStarts"></md-datepicker>
+          <div></div>
+          <h2>Pick a date to finish your story by</h2>
+          <label for="deadlineEnds">Deadline</label>
+          <md-datepicker id="deadlineEnds" ng-model="newStory.deadlineEnds"></md-datepicker>
+          <div></div>
+        <md-input-container>
+          <label for="wordGoal">Word Goal</label>
+          <input id="wordGoal" type="number" ng-model="newStory.wordGoal">
+        </md-input-container>
+      </div>
+      <div></div>
+      <md-button class="md-primary md-raised">Get Started!</md-button>
+    </form>
+  </md-card>
+</md-content>

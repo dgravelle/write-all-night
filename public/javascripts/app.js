@@ -26,6 +26,11 @@
               return UserService.getUser($route.current.params.id);
             }
           }
+        })
+        .when('/users/:id/new-story', {
+          templateUrl: 'views/new-story.html',
+          // controller: 'StoryController',
+          // restricted: true
         });
         $httpProvider.interceptors.push('AuthInterceptor');
     })
