@@ -33,8 +33,8 @@
           restricted: true
         })
         .when('/users/:id/story/:storyId', {
-          tempalateUrl: 'views/story-editor.html',
-          controller: 'StoriesEditor',
+          templateUrl: 'views/story-editor.html',
+          controller: 'StoryEditor',
           restricted: true,
           resolve: {
             getStory: function(StoriesService, $route) {

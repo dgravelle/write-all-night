@@ -9,6 +9,7 @@
     function NavBar($scope, $location, UserService) {
       $scope.$on('$routeChangeStart', (next, current) => {
         $scope.loggedIn = localStorage.getItem('user');
+        $scope.userId = localStorage.getItem('id');
       });
 
       $scope.logOut = function() {
