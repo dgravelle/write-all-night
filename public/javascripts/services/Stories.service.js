@@ -30,6 +30,20 @@
           .catch(err => {
             console.log(err);
           });
+        },
+
+        saveProgress: function (storyId, wordTotal) {
+          var story = {
+            story_id: storyId,
+            word_count: wordTotal
+          }
+          console.log(story);
+          return $http.post('/stories/saving-progress', story).then(story => {
+            console.log(story);
+          })
+          .catch(err => {
+            console.log(err);
+          })
         }
 
       }

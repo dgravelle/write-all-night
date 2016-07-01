@@ -4,6 +4,7 @@ exports.up = function(knex, Promise) {
     knex.schema.createTable('stories', t => {
       t.increments();
       t.timestamps();
+      t.integer('user_id');
       t.string('title');
       t.text('story_content');
       t.integer('word_goal');

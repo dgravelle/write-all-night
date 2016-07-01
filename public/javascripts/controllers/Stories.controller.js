@@ -15,6 +15,9 @@
           return 'yo finish filling out the form';
         }
         console.log(newStory);
+
+        newStory.user_id = parseInt($window.localStorage.getItem('id'));
+        
         return StoriesService.newStory(newStory).then(story => {
           console.log(story);
           var userID = $window.localStorage.getItem('id');

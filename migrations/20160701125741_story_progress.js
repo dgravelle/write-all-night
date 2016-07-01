@@ -5,7 +5,7 @@ exports.up = function(knex, Promise) {
       t.increments();
       t.integer('story_id');
       t.dateTime('date_saved');
-      t.integer('word_count');
+      t.integer('word_total');
     })
   ])
 };
