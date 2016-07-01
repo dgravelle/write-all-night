@@ -52,19 +52,12 @@
       self.createUser = function (user) {
         var deferred = $q.defer();
 
-        return $http.post('/users', user).then(data => {
+        return $http.post('/users/signup', user).then(data => {
 
-          var user = {
-            id: data.data.id,
-            token: data.data.token,
-            user: data.data.email
-          }
-
-          user = JSON.stringify(user);
-
-          $window.localStorage['user'] = user;
-
-          deferred.resolve(user);
+          $window.localStorage['id'] = data.data.id;
+          $window.localStorage['token'] = data.data.token;
+          $window.localStorage['user'] = data.data.user;
+          deferred.resolve(data);
 
           return deferred.promise;
         })

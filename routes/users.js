@@ -38,6 +38,8 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/signup', (req, res) => {
+
+  console.log('posting from /signup', req.body);
   Users.createUser(req.body).then(data => {
     var userToken = makeJWT(data);
     // console.log(data);

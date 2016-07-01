@@ -30,6 +30,9 @@ Users.createUser = (data) => {
 
 Users.authenticateUser = (email, password) => {
   console.log('authenticating');
+  console.log('email: ', email);
+  console.log('password: ', password);
+
   return new Promise((resolve, reject) => {
     Users.select().where({ email: email }).first().then((user) => {
       console.log(user);
@@ -40,6 +43,7 @@ Users.authenticateUser = (email, password) => {
         if (err || !res) {
           reject('Sorry, that email and password does not match');
         }
+        
         user = {
           id: user.id,
           email: user.email,

@@ -18,7 +18,7 @@
           console.log(user);
           // console.log($location);
           // user = JSON.parse(user);
-          $location.path('/users/' + user.data.id)
+          $location.path('/users/' + user.data.id);
         })
         .catch(err => {
           console.log(err);
