@@ -8,7 +8,7 @@
 
     function NavBar($scope, $location, UserService) {
       $scope.$on('$routeChangeStart', (next, current) => {
-        $scope.loggedIn = JSON.parse(localStorage.getItem('user'));
+        $scope.loggedIn = localStorage.getItem('user');
       });
 
       $scope.logOut = function() {

@@ -1,7 +1,7 @@
 (function () {
 
   angular
-    .module('app', ['ngRoute', 'ngMaterial'])
+    .module('app', ['ngRoute', 'ngMaterial', 'textAngular'])
     .config(function($routeProvider, $httpProvider) {
       $routeProvider
         .when('/', {
@@ -31,6 +31,16 @@
           templateUrl: 'views/new-story.html',
           controller: 'StoriesController',
           restricted: true
+        })
+        .when('/users/:id/story/:storyId', {
+          tempalateUrl: 'views/story-editor.html',
+          controller: 'StoriesEditor',
+          restricted: true,
+          resolve: {
+            getStory: function(StoriesService, $route) {
+              return StoriesService.getStory($route.current.params.storyId);
+            }
+          }
         });
         $httpProvider.interceptors.push('AuthInterceptor');
     })

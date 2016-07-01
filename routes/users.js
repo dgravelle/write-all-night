@@ -14,7 +14,7 @@ function makeJWT(user) {
 
 function tokenCheck(req, res, next) {
   console.log('checking token');
-  console.log(req.headers);
+  console.log(req.headers.authorization);
   if (!req.headers.authorization) {
     res.status(403);
     res.json({ message: 'no token, no web site' });
@@ -89,7 +89,7 @@ router.post('/login', (req, res) => {
   })
   .catch(err => {
     console.log('auth error: ', err);
-    res.json(err)
+    res.json(err);
   })
 });
 

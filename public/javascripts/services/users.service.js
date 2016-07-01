@@ -22,17 +22,11 @@
         return $http.post('/users/login', user).then(data => {
           console.log(data);
 
-          var user = {
-            id: data.data.id,
-            token: data.data.token,
-            user: data.data.user
-          }
+          $window.localStorage['id'] = data.data.id;
+          $window.localStorage['token'] = data.data.token;
+          $window.localStorage['user'] = data.data.user;
 
-          user = JSON.stringify(user);
-
-          $window.localStorage['user'] = user;
-
-          deferred.resolve(user);
+          deferred.resolve(data);
 
           return deferred.promise;
         })

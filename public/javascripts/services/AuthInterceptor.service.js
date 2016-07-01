@@ -11,14 +11,14 @@
         request: function (config) {
           // debugger;
 
-          var token = $window.localStorage.getItem('user');
+          var token = $window.localStorage.getItem('token');
 
           config.headers['X-Requested-With'] = 'XMLHttpRequest';
 
-          token = JSON.parse(token);
+          // token = JSON.parse(token);
 
           if (token)
-            config.headers.Authorization = token.token;
+            config.headers.Authorization = token;
 
           return config
         },

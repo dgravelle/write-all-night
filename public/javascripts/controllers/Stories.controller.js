@@ -4,9 +4,9 @@
     .module('app')
     .controller('StoriesController', StoriesController);
 
-    StoriesController.$inject = ['$scope', 'StoriesService'];
+    StoriesController.$inject = ['$scope', '$window', '$location', 'StoriesService'];
 
-    function StoriesController($scope, StoriesService) {
+    function StoriesController($scope, $window, $location, StoriesService) {
 
       // $scope.newStory = {}
 
@@ -15,7 +15,14 @@
           return 'yo finish filling out the form';
         }
         console.log(newStory);
-        return StoriesService.newStory(newStory);
+        return StoriesService.newStory(newStory).then(story => {
+          console.log(story);
+          var userID = $window.localStorage.getItem('id');
+          $location.path('/users/' + userID + '/story/' + story.data[0].id)
+        })
+        .catch(err => {
+          console.log(err);
+        });
       }
     }
 })()
