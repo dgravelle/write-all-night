@@ -28,12 +28,17 @@
           });
         },
 
+        getAllStories: function (userId) {
+            console.log(userId);
+            return $http.get('/stories/all/' + userId);
+        },
+
         saveProgress: function (storyId, wordTotal) {
           var story = {
             story_id: storyId,
             word_count: wordTotal
           }
-          
+
           return $http.post('/stories/saving-progress', story).then(story => {
 
           })

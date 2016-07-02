@@ -4,15 +4,16 @@
     .module('app')
     .controller('DashboardController', DashboardController)
 
-    DashboardController.$inject = ['$scope', 'UserService', 'getUser'];
+    DashboardController.$inject = ['$scope', 'UserService', 'getUser', 'allStories'];
 
-    function DashboardController($scope, UserService, getUser) {
+    function DashboardController($scope, UserService, getUser, allStories) {
       $scope.currentUser = getUser;
       // $scope.stories = StoriesService.getStories()
 
-      $scope.addNewStory = function(story) {
-        
-      }
+
       var vm = this;
+      vm.allStories = allStories;
+
+      console.log(vm.allStories);
     }
 })()

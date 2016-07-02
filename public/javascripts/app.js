@@ -22,8 +22,10 @@
           restricted: true,
           resolve: {
             getUser: function (UserService, $route) {
-              // return 'user';
               return UserService.getUser($route.current.params.id);
+            },
+            allStories: function(StoriesService, $route) {
+              return StoriesService.getAllStories($route.current.params.id);
             }
           }
         })
