@@ -8,12 +8,8 @@
 
     function DashboardController($scope, UserService, getUser, allStories) {
       $scope.currentUser = getUser;
-      // $scope.stories = StoriesService.getStories()
 
-
-      var vm = this;
-      vm.allStories = allStories;
-
-      console.log(vm.allStories);
+      $scope.allStories = allStories.data;
+      console.log(allStories);
     }
 })()

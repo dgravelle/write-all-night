@@ -43,7 +43,7 @@ router.get('/all/:id', (req, res) => {
     res.json(stories);
   })
   .catch(err => {
-    res.sendStatus(500).json(err);
+    res.sendStatus(500);
   })
 })
 

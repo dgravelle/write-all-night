@@ -1,8 +1,20 @@
 
 
 <div layout="row">
-  <h1>Hello</h1>
-  <p>{{ currentUser }}</p>
+  <h1>Welcome</h1>
+</div>
+<div flex-gt-sm="50" flex>
+  <md-toolbar layout="row">
+    <div class="md-toolbar-tools">
+      <h2>Your Stories</h2>
+    </div>
+  </md-toolbar>
+  <md-list flex>
+    <md-list-item ng-repeat="story in allStories">
+      <h3>{{ story.title }}</h3>
+      <span>{{ story.created_at }}</span>
+    </md-list-item>
+  </md-list>
 </div>
 <div layout="row">
   <md-button href="/#/users/{{ currentUser.id}}/new-story" class="md-raised md-primary">Start a new Story!</md-button>

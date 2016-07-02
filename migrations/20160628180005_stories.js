@@ -3,7 +3,7 @@ exports.up = function(knex, Promise) {
   return new Promise.all([
     knex.schema.createTable('stories', t => {
       t.increments();
-      t.timestamps();
+      t.timestamp('created_at').notNullable().defaultTo(knex.raw('now()'));
       t.integer('user_id');
       t.string('title');
       t.text('story_content');
