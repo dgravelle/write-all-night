@@ -11,12 +11,8 @@
       'getStory',
       'StoriesService'];
 
-    function StoryEditor($scope,
-      $timeout,
-      $window,
-      textAngularManager,
-      getStory,
-      StoriesService) {
+    function StoryEditor($scope, $timeout, $window, textAngularManager, getStory, StoriesService) {
+      const user_id = $window.localStorage.getItem('id');
 
       $scope.hello = 'hello';
       $scope.editor;
@@ -29,8 +25,12 @@
       }
 
       function saveProgress() {
-        StoriesService.saveProgress(story.id, $scope.wordTotal);
+        StoriesService.saveProgress(user_id, story.id, $scope.wordTotal);
         $timeout(saveProgress, 60000);
+      }
+
+      function saveStoryContent() {
+        
       }
 
       $scope.wordCount = function() {

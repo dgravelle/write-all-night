@@ -4,12 +4,15 @@
     .module('app')
     .controller('DashboardController', DashboardController)
 
-    DashboardController.$inject = ['$scope', 'UserService', 'getUser', 'allStories'];
+    DashboardController.$inject = ['$scope', 'UserService', 'getUser', 'allStories', 'latestStory'];
 
-    function DashboardController($scope, UserService, getUser, allStories) {
+    function DashboardController($scope, UserService, getUser, allStories, latestStory) {
       $scope.currentUser = getUser;
 
       $scope.allStories = allStories.data;
-      console.log(allStories);
+      $scope.latestStory = latestStory;
+
+      console.log($scope.allStories);
+      console.log($scope.latestStory);
     }
 })()

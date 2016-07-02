@@ -29,12 +29,22 @@
         },
 
         getAllStories: function (userId) {
-            console.log(userId);
-            return $http.get('/stories/all/' + userId);
+            return $http.get('/stories/all/' + userId).then(stories => {
+              console.log(stories);
+              return stories;
+            })
+            .catch(err => {
+              return err;
+            });
         },
 
-        saveProgress: function (storyId, wordTotal) {
+        getLatestStory: function (userId) {
+          return $http.get('stories/latest/' + userId);
+        },
+
+        saveProgress: function (user_id, storyId, wordTotal) {
           var story = {
+            user_id: user_id,
             story_id: storyId,
             word_count: wordTotal
           }

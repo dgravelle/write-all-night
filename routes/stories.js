@@ -43,7 +43,21 @@ router.get('/all/:id', (req, res) => {
     res.json(stories);
   })
   .catch(err => {
-    res.sendStatus(500);
+    res.json(err);
+  })
+});
+
+router.get('/latest/:id', (req, res) => {
+  const user_id = req.params.id;
+
+  StoryProgress.select().where({ user_id: user_id }).first().then(latest => {
+    console.log('latest', latest);
+    if (!latest) {
+      res.json('no stories')
+    }
+    else {
+      res.json(latest);
+    }
   })
 })
 
@@ -51,6 +65,7 @@ router.post('/saving-progress', (req, res) => {
   console.log('saving progress: ', req.body);
 
   StoryProgress.insert({
+    user_id: req.body.user_id,
     story_id: req.body.story_id,
     date_saved: new Date(),
     word_total: req.body.wordTotal

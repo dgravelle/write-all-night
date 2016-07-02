@@ -26,6 +26,9 @@
             },
             allStories: function(StoriesService, $route) {
               return StoriesService.getAllStories($route.current.params.id);
+            },
+            latestStory: function(StoriesService, $route) {
+              return StoriesService.getLatestStory($route.current.params.id);
             }
           }
         })
