@@ -4,6 +4,8 @@ const knex = require('../db/knex');
 const Stories = knex('stories');
 const StoryProgress = knex('story_progress');
 
+// select * from story_progress where CAST(date_saved AS date) = '2016/07/01' order by date_saved desc limit 1;
+
 
 router.post('/', (req, res) => {
   console.log(req.body);
