@@ -49,7 +49,7 @@ router.get('/all/:id', (req, res) => {
 
 router.get('/latest/:id', (req, res) => {
   const user_id = req.params.id;
-
+  console.log(user_id);
   StoryProgress.select().where({ user_id: user_id }).first().then(latest => {
     console.log('latest', latest);
     if (!latest) {
@@ -58,8 +58,8 @@ router.get('/latest/:id', (req, res) => {
     else {
       res.json(latest);
     }
-  })
-})
+  });
+});
 
 router.post('/saving-progress', (req, res) => {
   console.log('saving progress: ', req.body);
@@ -68,7 +68,7 @@ router.post('/saving-progress', (req, res) => {
     user_id: req.body.user_id,
     story_id: req.body.story_id,
     date_saved: new Date(),
-    word_total: req.body.wordTotal
+    word_total: req.body.word_count
   }).then(data => {
     console.log('data returned from progress update: ', data);
     res.sendStatus(200);
