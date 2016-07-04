@@ -4,8 +4,29 @@ const knex = require('../db/knex');
 const Stories = knex('stories');
 const StoryProgress = knex('story_progress');
 
-// select * from story_progress where CAST(date_saved AS date) = '2016/07/01' order by date_saved desc limit 1;
+/*
 
+  select *
+    from story_progress
+      where CAST(date_saved AS date) = '2016/07/01'
+
+        order by date_saved desc
+        limit 1;
+
+*/
+
+
+/*
+Query for getting the latest project
+
+select ta.word_total as Word_Total, ta.date_saved as last_save
+  from story_progress ta
+    inner join (
+      select max(date_saved) as max_date
+      from story_progress
+    ) as tb on ta.date_saved = tb.max_date;
+
+*/
 
 router.post('/', (req, res) => {
   console.log(req.body);

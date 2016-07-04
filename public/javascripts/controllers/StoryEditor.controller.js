@@ -32,8 +32,9 @@
 
       function getEditor() {
         $scope.editor = textAngularManager.retrieveEditor('myEditorName');
-        console.log($scope.editor);
       }
+
+
 
       function saveProgress() {
         StoriesService.saveProgress(user_id, story.id, $scope.wordTotal);
@@ -42,7 +43,7 @@
       }
 
       function saveStoryContent() {
-
+        // $scope.editor.scope.html)
       }
 
       $scope.wordCount = function() {
@@ -51,6 +52,10 @@
 
       $timeout(getEditor, 0);
 
+      $scope.$on('$destroy', () => {
+        StoriesService.saveProgress(user_id, story.id, $scope.wordTotal);
+        $timeout.cancel(save);
+      });
 
     }
 
