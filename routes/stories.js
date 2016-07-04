@@ -6,13 +6,10 @@ const StoryProgress = knex('story_progress');
 
 /*
 
-  select *
+  select date_trunc('day', date_saved)
     from story_progress
-      where CAST(date_saved AS date) = '2016/07/01'
-
-        order by date_saved desc
-        limit 1;
-
+      where date_saved >= '2016-07-01'
+      and date_saved <= '2016-07-30'
 */
 
 
@@ -25,6 +22,15 @@ select ta.word_total as Word_Total, ta.date_saved as last_save
       select max(date_saved) as max_date
       from story_progress
     ) as tb on ta.date_saved = tb.max_date;
+
+*/
+
+
+/*
+
+returns each date in the table but its the earliest possible date
+
+select date_trunc('day', date_saved) as date from story_progress group by date order by date;
 
 */
 
