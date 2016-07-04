@@ -4,14 +4,6 @@ const knex = require('../db/knex');
 const Stories = knex('stories');
 const StoryProgress = knex('story_progress');
 
-/*
-
-  select date_trunc('day', date_saved)
-    from story_progress
-      where date_saved >= '2016-07-01'
-      and date_saved <= '2016-07-30'
-*/
-
 
 /*
 Query for getting the latest project
@@ -25,14 +17,6 @@ select ta.word_total as Word_Total, ta.date_saved as last_save
 
 */
 
-
-/*
-
-returns each date in the table but its the earliest possible date
-
-select date_trunc('day', date_saved) as date from story_progress group by date order by date;
-
-*/
 
 router.post('/', (req, res) => {
   console.log(req.body);
