@@ -5,7 +5,10 @@ module.exports = {
   development: {
     client: 'pg',
     connection: 'postgres://localhost/write-all-night',
-    migrations: './migrations'
+    migrations: './migrations',
+    seeds: {
+      directory: './seeds'
+    }
   },
 
 
