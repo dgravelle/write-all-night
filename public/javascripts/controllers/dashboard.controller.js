@@ -34,16 +34,44 @@
 
       function createPoints(progress) {
 
+        var obj = {};
+        for (var i = 0; i < $scope.writingProgress.length; i++) {
+          var x = moment($scope.writingProgress[i].date_saved).get('date');
+          var y = $scope.writingProgress[i].word_total;
+          obj[x] = y;
+        }
+        // return obj;
+        var dataPointsz = [];
+        var lastTotal = 0;
+        debugger;
+        for (var i = 1; i <= moment().get('date'); i++) {
+          if (obj.hasOwnProperty(i)) {
+            lastTotal = obj[i];
+            dataPointsz.push(lastTotal);
+          }
+          else {
+            dataPointsz.push(lastTotal);
+          }
+        }
+        return dataPointsz;
+
       }
 
-      console.log(chartMonth);
-
-
+      $scope.chartData = createPoints($scope.writingProgress);
       $scope.labels = chartMonth;
-      $scope.series = ['Series A', 'Series B'];
-      $scope.points = [
-        [65, 59, 80, 81, 56, 55, 40]
-      ];
+      $scope.points = [$scope.chartData];
+
+      var steps = 50000 / 10000;
+      $scope.option = {
+        scaleOverride: true,
+        scaleSteps: steps,
+        scaleStepWidth: Math.ceil(50000 / steps),
+        scaleStartValue: 0
+      }
+
+      console.log($scope.chartData);
+
+
       $timeout(() => {
         getLatestStory();
       },0)
