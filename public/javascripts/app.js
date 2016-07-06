@@ -1,7 +1,7 @@
 (function () {
 
   angular
-    .module('app', ['ngRoute', 'ngMaterial', 'textAngular'])
+    .module('app', ['ngRoute', 'ngMaterial', 'textAngular', 'materialCalendar'])
     .config(function($routeProvider, $httpProvider) {
       $routeProvider
         .when('/', {
@@ -27,8 +27,11 @@
             allStories: function(StoriesService, $route) {
               return StoriesService.getAllStories($route.current.params.id);
             },
-            latestStory: function(StoriesService, $route) {
-              return StoriesService.getLatestStory($route.current.params.id);
+            // latestStory: function(StoriesService, $route) {
+            //   return StoriesService.getLatestStory($route.current.params.id);
+            // },
+            writingProgress: function(StoriesService, $route) {
+              return StoriesService.getWritingProgress($route.current.params.id);
             }
           }
         })

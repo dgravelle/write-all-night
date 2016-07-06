@@ -39,7 +39,17 @@
         },
 
         getLatestStory: function (userId) {
-          return $http.get('stories/latest/' + userId);
+          return $http.get('/stories/latest/' + userId);
+        },
+
+        getWritingProgress: function(id) {
+          return $http.get('/stories/calendar/' + id).then(data => {
+            console.log(data);
+            return data.data;
+          })
+          .catch(err => {
+            return err;
+          })
         },
 
         saveProgress: function (user_id, storyId, wordTotal) {
