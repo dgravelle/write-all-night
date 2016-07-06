@@ -1,8 +1,8 @@
 (function () {
 
   angular
-    .module('app', ['ngRoute', 'ngMaterial', 'textAngular', 'materialCalendar', 'chart.js'])
-    .config(function($routeProvider, $httpProvider) {
+    .module('app', ['ngRoute', 'ngMaterial', 'textAngular', 'materialCalendar', 'chart.js', 'angularMoment'])
+    .config(function($routeProvider, $httpProvider, ChartJsProvider) {
       $routeProvider
         .when('/', {
           templateUrl: 'views/home.html',
@@ -27,9 +27,6 @@
             allStories: function(StoriesService, $route) {
               return StoriesService.getAllStories($route.current.params.id);
             },
-            // latestStory: function(StoriesService, $route) {
-            //   return StoriesService.getLatestStory($route.current.params.id);
-            // },
             writingProgress: function(StoriesService, $route) {
               return StoriesService.getWritingProgress($route.current.params.id);
             }
@@ -51,6 +48,8 @@
           }
         });
         $httpProvider.interceptors.push('AuthInterceptor');
+
+        ChartJsProvider.setOptions({ colors : [ '#803690', '#00ADF9', '#DCDCDC', '#46BFBD', '#FDB45C', '#949FB1', '#4D5360'] });
     })
 
     .run(function($rootScope, $location, $window) {

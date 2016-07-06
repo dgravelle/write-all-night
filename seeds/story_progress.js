@@ -29,7 +29,6 @@ exports.seed = function(knex, Promise) {
       })
 
       function makeStory(date, wordIncrement) {
-        word_total = 0;
         for (var i = 0; i < 60; i++) {
           stories.push(knex('story_progress').insert({
             user_id: 1,

@@ -30,7 +30,6 @@
 
         getAllStories: function (userId) {
             return $http.get('/stories/all/' + userId).then(stories => {
-              console.log(stories);
               return stories;
             })
             .catch(err => {
@@ -38,13 +37,8 @@
             });
         },
 
-        getLatestStory: function (userId) {
-          return $http.get('/stories/latest/' + userId);
-        },
-
         getWritingProgress: function(id) {
           return $http.get('/stories/calendar/' + id).then(data => {
-            console.log(data);
             return data.data;
           })
           .catch(err => {
