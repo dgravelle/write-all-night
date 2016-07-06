@@ -10,9 +10,10 @@
 
       $scope.currentUser = getUser;
       $scope.writingProgress = writingProgress;
+      $scope.allStories = allStories.data;
+
       $scope.latestStory;
 
-      $scope.allStories = allStories.data;
 
       function getLatestStory() {
         var latest = $scope.writingProgress[$scope.writingProgress.length - 1];
@@ -43,7 +44,7 @@
         // return obj;
         var dataPointsz = [];
         var lastTotal = 0;
-        debugger;
+
         for (var i = 1; i <= moment().get('date'); i++) {
           if (obj.hasOwnProperty(i)) {
             lastTotal = obj[i];
@@ -54,27 +55,28 @@
           }
         }
         return dataPointsz;
-
       }
 
-      $scope.chartData = createPoints($scope.writingProgress);
-      $scope.labels = chartMonth;
-      $scope.points = [$scope.chartData];
+      getLatestStory();
 
-      var steps = 50000 / 10000;
-      $scope.option = {
-        scaleOverride: true,
-        scaleSteps: steps,
-        scaleStepWidth: Math.ceil(50000 / steps),
-        scaleStartValue: 0
-      }
+      // $scope.chartData = createPoints($scope.writingProgress);
+      // $scope.labels = chartMonth;
+      // $scope.points = [$scope.chartData];
 
-      console.log($scope.chartData);
+      //
+      // $scope.option = {
+      //   scaleOverride: true,
+      //   scaleSteps: steps,
+      //   scaleStepWidth: Math.ceil(50000 / steps),
+      //   scaleStartValue: 0
+      // }
+
+      // console.log($scope.chartData);
 
 
-      $timeout(() => {
-        getLatestStory();
-      },0)
+
+      // $timeout(() => {
+      // },0)
 
     }
 })()

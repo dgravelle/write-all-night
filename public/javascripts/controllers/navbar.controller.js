@@ -15,7 +15,7 @@
       $scope.logOut = function() {
         console.log('logging out');
         UserService.logOut();
-        $location.path('/#/');
+        $location.path('/');
       }
     }
 

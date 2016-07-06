@@ -22,23 +22,8 @@
   day-content="setDayContent"
   disable-future-selection="false"
  ></calendar-md> -->
-<div layout="row" layout-xs="column">
-  <div flex>
-    <canvas id="line"
-      class="chart chart-line"
-      chart-data="points"
-      chart-labels="labels"
-      chart-options="option"></canvas>
-  </div>
-  <div flex>
-    <h2>Latest writing</h2>
-    <div class="latest-container">
-      <h3>{{ latestStory.title }}</h3>
-      <span>{{ latestStory.word_total }}</span>
-      <span> / {{ latestStory.word_goal }}</span>
-    </div>
-  </div>
-</div>
+
+<story-chart story-info="latestStory" story-progress="writingProgress"></story-chart>
 
 <div flex-gt-sm="50" flex>
   <md-toolbar layout="row">

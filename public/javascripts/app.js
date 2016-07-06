@@ -2,7 +2,7 @@
 
   angular
     .module('app', ['ngRoute', 'ngMaterial', 'textAngular', 'materialCalendar', 'chart.js', 'angularMoment'])
-    .config(function($routeProvider, $httpProvider, ChartJsProvider) {
+    .config(function($routeProvider, $httpProvider) {
       $routeProvider
         .when('/', {
           templateUrl: 'views/home.html',
@@ -49,7 +49,6 @@
         });
         $httpProvider.interceptors.push('AuthInterceptor');
 
-        ChartJsProvider.setOptions({ colors : [ '#803690', '#00ADF9', '#DCDCDC', '#46BFBD', '#FDB45C', '#949FB1', '#4D5360'] });
     })
 
     .run(function($rootScope, $location, $window) {
