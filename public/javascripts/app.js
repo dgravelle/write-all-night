@@ -1,7 +1,7 @@
 (function () {
 
   angular
-    .module('app', ['ngRoute', 'ngMaterial', 'textAngular', 'materialCalendar'])
+    .module('app', ['ngRoute', 'ngMaterial', 'textAngular', 'materialCalendar', 'chart.js'])
     .config(function($routeProvider, $httpProvider) {
       $routeProvider
         .when('/', {
