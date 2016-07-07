@@ -5,14 +5,20 @@
     .config(function($routeProvider, $httpProvider) {
       $routeProvider
         .when('/', {
+          homePage: true,
+          restricted: false,
           templateUrl: 'views/home.html',
         })
         .when('/login', {
           templateUrl: 'views/login.html',
+          restricted: false,
+          notForLoggedIn: true,
           controller: 'LoginController',
           controllerAs: 'loginCtrl'
         })
         .when('/signup', {
+          restricted: false,
+          notForLoggedIn: true,
           templateUrl: 'views/register.html',
           controller: 'RegisterController'
         })
@@ -56,6 +62,10 @@
         if (next.restricted && !$window.localStorage.getItem('user')) {
           $location.path('/');
         }
+        else if (next.notForLoggedIn && window.localStorage.getItem('id')) {
+          $location.path('/users/' + $window.localStorage.getItem('id'))
+        }
+
       })
     });
 
