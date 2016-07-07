@@ -20,16 +20,31 @@ router.post('/', (req, res) => {
   })
 });
 
+router.put('/saveContent/:id', (req, res) => {
+  const id = req.params.id;
+  console.log('saving story');
+  console.log(id);
+  console.log(req.body.content);
+
+  Stories.update({ 'story_content': req.body.content }).where({ user_id: id }).then(data => {
+    console.log('success',data);
+    res.json(data);
+  })
+  .catch(err => {
+    res.json(err);
+  })
+});
+
 router.get('/calendar/:id', (req, res) => {
+  console.log('/calendar/:id');
   var firstDate = moment([2016, 7 - 1])
   var lastDate = moment().endOf('month');
-  console.log('in');
   const id = req.params.id;
   console.log(id);
 
   StoryProgress.select().where({ user_id: id }).andWhere('date_saved', '>=', firstDate.format()).orderBy('date_saved', 'asc')
   .then(data => {
-    // console.log(data);
+    console.log(data);
     var results = [];
     var lastEntry;
     var currentDay = moment(data[0]).get('date');
@@ -103,6 +118,7 @@ router.get('/latest/:id', (req, res) => {
   });
 });
 
+
 router.post('/saving-progress', (req, res) => {
   console.log('saving progress: ', req.body);
 
@@ -113,13 +129,13 @@ router.post('/saving-progress', (req, res) => {
     word_total: req.body.word_count
   }).then(data => {
     console.log('data returned from progress update: ', data);
-    res.sendStatus(200);
+    res.json(data);
   })
   .catch(err => {
     console.log('progres update error: ', err);
     res.sendStatus(500);
   })
-
 })
+
 
 module.exports = router;

@@ -46,18 +46,35 @@
           })
         },
 
-        saveProgress: function (user_id, storyId, wordTotal) {
+        saveProgress: function(user_id, storyId, wordTotal) {
           var story = {
             user_id: user_id,
             story_id: storyId,
             word_count: wordTotal
           }
 
-          return $http.post('/stories/saving-progress', story).then(story => {
-
+          $http.post('/stories/saving-progress', story).then(story => {
+            return story;
           })
           .catch(err => {
+            return err;
+          })
+        },
 
+        saveContent: function(id, content) {
+          // alert('saving story :)');
+          // var options = { 'Content-Type': 'application/x-www-form-urlencoded' }
+          $http({
+            method: 'put',
+            url: '/stories/saveContent/' + id,
+            headers: { 'Content-Type': 'application/json' },
+            data: content
+          })
+          .then(data => {
+            return data;
+          })
+          .catch(err => {
+            return err;
           })
         }
 

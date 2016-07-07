@@ -1,3 +1,5 @@
+'use strict';
+
 (function () {
 
   angular
@@ -5,16 +7,21 @@
     .controller('StoryEditor', StoryEditor)
 
     StoryEditor.$inject = ['$scope',
+      '$interval',
       '$timeout',
       '$window',
       'textAngularManager',
       'getStory',
       'StoriesService'];
 
-    function StoryEditor($scope, $timeout, $window, textAngularManager, getStory, StoriesService) {
-      const user_id = $window.localStorage.getItem('id');
-      var save;
+    function StoryEditor($scope, $interval, $timeout, $window, textAngularManager, getStory, StoriesService) {
+      $timeout(getEditor, 0);
 
+      const user_id = $window.localStorage.getItem('id');
+      const save = $interval(saveProgress, 60000);
+      const story = getStory;
+
+      $scope.storyContent;
       $scope.editor;
       $scope.wordTotal;
       $scope.focused = false;
@@ -25,36 +32,37 @@
 
       $scope.loseFocus = function() {
         $scope.focused = false;
-        $timeout.cancel(save);
+        $interval.cancel(save);
+        console.log('not saving');
       }
 
-      var story = getStory.data;
+
+
+      console.log(story);
 
       function getEditor() {
         $scope.editor = textAngularManager.retrieveEditor('myEditorName');
+        $scope.editor.scope.html = story.story_content;
+
       }
-
-
 
       function saveProgress() {
         StoriesService.saveProgress(user_id, story.id, $scope.wordTotal);
+        $scope.storyContent = $scope.editor.scope.html;
+        StoriesService.saveContent(user_id, { content: $scope.storyContent });
         console.log('saving');
-        save = $timeout(saveProgress, 60000);;
-      }
-
-      function saveStoryContent() {
-        // $scope.editor.scope.html)
+        console.log($scope.storyContent);
       }
 
       $scope.wordCount = function() {
         $scope.wordTotal = $scope.editor.scope.wordcount;
       }
 
-      $timeout(getEditor, 0);
 
       $scope.$on('$destroy', () => {
-        StoriesService.saveProgress(user_id, story.id, $scope.wordTotal);
-        $timeout.cancel(save);
+        saveProgress();
+        $interval.cancel(save);
+
       });
 
     }
