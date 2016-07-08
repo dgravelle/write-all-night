@@ -7,6 +7,7 @@
     .controller('StoryEditor', StoryEditor)
 
     StoryEditor.$inject = ['$scope',
+      '$interpolate',
       '$interval',
       '$timeout',
       '$window',
@@ -14,12 +15,14 @@
       'getStory',
       'StoriesService'];
 
-    function StoryEditor($scope, $interval, $timeout, $window, textAngularManager, getStory, StoriesService) {
+    function StoryEditor($scope, $interpolate, $interval, $timeout, $window, textAngularManager, getStory, StoriesService) {
       $timeout(getEditor, 0);
 
       const user_id = $window.localStorage.getItem('id');
       const save = $interval(saveProgress, 60000);
-      const story = getStory;
+      const story = getStory.data;
+
+
 
       $scope.storyContent;
       $scope.editor;
@@ -40,7 +43,9 @@
 
       function getEditor() {
         $scope.editor = textAngularManager.retrieveEditor('myEditorName');
-        $scope.editor.scope.html = story.story_content;
+        // $scope.editor.scope.html = story.story_content;
+        console.log(story.story_content);
+        $scope.myEditor = $interpolate(story.story_content)($scope);
 
       }
 

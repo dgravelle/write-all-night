@@ -11,15 +11,12 @@
       $scope.currentUser = getUser;
       $scope.writingProgress = writingProgress;
       $scope.allStories = allStories;
-      console.log(allStories);
-
       $scope.latestStory;
 
 
       function getLatestStory() {
-        console.log('in');
         debugger;
-        var latest = $scope.writingProgress[$scope.writingProgress.length - 1];
+        var latest = writingProgress[writingProgress.length - 1];
 
         for (var i = 0; i < $scope.allStories.length; i++) {
           if ($scope.allStories[i].id === latest.story_id) {
