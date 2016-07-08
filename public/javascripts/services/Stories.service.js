@@ -31,7 +31,7 @@
 
         getAllStories: function (userId) {
             return $http.get('/stories/all/' + userId).then(stories => {
-              return stories;
+              return stories.data;
             })
             .catch(err => {
               return err;
@@ -40,7 +40,6 @@
 
         getWritingProgress: function(id) {
           return $http.get('/stories/calendar/' + id).then(data => {
-
 
             return data.data;
           })

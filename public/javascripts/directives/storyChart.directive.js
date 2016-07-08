@@ -25,6 +25,7 @@
           for (var i = 1; i <= interval; i++) {
             chartMonth.push(i.toString());
           }
+
           var makePoints = function(progress) {
             var obj = {};
             for (var i = 0; i < scope.storyProgress.length; i++) {
@@ -32,7 +33,9 @@
               var y = scope.storyProgress[i].word_total;
               obj[x] = y;
             }
+
             console.log(obj);
+
             var dataPoints = [];
             var lastTotal = 0;
 

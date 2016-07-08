@@ -11,17 +11,21 @@
       $scope.currentUser = getUser;
       $scope.writingProgress = writingProgress;
       $scope.allStories = allStories;
+      console.log(allStories);
 
       $scope.latestStory;
 
 
       function getLatestStory() {
+        console.log('in');
+        debugger;
         var latest = $scope.writingProgress[$scope.writingProgress.length - 1];
 
         for (var i = 0; i < $scope.allStories.length; i++) {
           if ($scope.allStories[i].id === latest.story_id) {
             $scope.latestStory = $scope.allStories[i];
             $scope.latestStory.word_total = latest.word_total;
+            console.log($scope.latestStory);
           }
         }
       }
@@ -57,8 +61,8 @@
         return dataPointsz;
       }
 
-      getLatestStory();
 
+      $timeout(getLatestStory(), 0)
 
       // $scope.chartData = createPoints($scope.writingProgress);
       // $scope.labels = chartMonth;

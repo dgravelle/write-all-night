@@ -8,10 +8,10 @@ exports.up = function(knex, Promise) {
       t.string('title');
       t.text('story_content');
       t.integer('word_goal');
+      t.integer('word_total');
       t.boolean('deadline');
       t.date('deadlineStarts');
       t.date('deadlineEnds');
-      t.integer('wordGoal');
       t.dateTime('created_on');
     })
   ])
