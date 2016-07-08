@@ -43,11 +43,13 @@
             var storyData = {
               storyProgress: data.data
             }
+
             this.getStory(data.data[0].story_id).then(data => {
               storyData.storyInfo = data.data;
-              console.log(data);
             })
+
             return storyData;
+            
           })
           .catch(err => {
             return err;

@@ -11,16 +11,18 @@
         restrict: 'E',
         templateUrl: 'javascripts/directives/story-chart.html',
         scope: {
-          storyInfo: '=storyInfo',
-          storyProgress: '=storyProgress'
+          story: '=story',
         },
         link: function (scope, element, attrs) {
-          const story = scope.storyInfo;
+          debugger;
+          const story = scope.story;
+          scope.latestTotal = story.storyProgress[story.storyProgress.length -1].word_total;
           console.log(story);
 
           // maps x axis points based on days in month
           var chartMonth = [];
-          var interval = moment.duration(moment(story.deadlineEnds) - moment(story.deadlineStarts)).days();
+
+          var interval = moment.duration(moment(story.storyInfo.deadlineEnds) - moment(story.storyInfo.deadlineStarts)).days();
 
           for (var i = 1; i <= interval; i++) {
             chartMonth.push(i.toString());
@@ -28,9 +30,9 @@
 
           var makePoints = function(progress) {
             var obj = {};
-            for (var i = 0; i < scope.storyProgress.length; i++) {
-              var x = moment(scope.storyProgress[i].date_saved).get('date');
-              var y = scope.storyProgress[i].word_total;
+            for (var i = 0; i < story.storyProgress.length; i++) {
+              var x = moment(story.storyProgress[i].date_saved).get('date');
+              var y = story.storyProgress[i].word_total;
               obj[x] = y;
             }
 
@@ -52,9 +54,7 @@
             return [dataPoints];
           }
 
-
-
-          scope.points = makePoints(scope.storyProgress);
+          scope.points = makePoints(story.storyProgress);
           console.log(scope.points);
           scope.labels = chartMonth;
           scope.option = {

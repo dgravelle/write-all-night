@@ -15,18 +15,18 @@
 
       console.log(writingProgress);
 
-      function getLatestStory() {
-        debugger;
-        var latest = writingProgress[writingProgress.length - 1];
-
-        for (var i = 0; i < $scope.allStories.length; i++) {
-          if ($scope.allStories[i].id === latest.story_id) {
-            $scope.latestStory = $scope.allStories[i];
-            $scope.latestStory.word_total = latest.word_total;
-            console.log($scope.latestStory);
-          }
-        }
-      }
+      // function getLatestStory() {
+      //   debugger;
+      //   var latest = writingProgress[writingProgress.length - 1];
+      //
+      //   for (var i = 0; i < $scope.allStories.length; i++) {
+      //     if ($scope.allStories[i].id === latest.story_id) {
+      //       $scope.latestStory = $scope.allStories[i];
+      //       $scope.latestStory.word_total = latest.word_total;
+      //       console.log($scope.latestStory);
+      //     }
+      //   }
+      // }
 
       var chartMonth = [];
       var chartPoints = [];
@@ -35,31 +35,31 @@
         chartMonth.push(i.toString());
       }
 
-      function createPoints(progress) {
+      // function createPoints(progress) {
+      //
+      //   var obj = {};
+      //   for (var i = 0; i < $scope.writingProgress.length; i++) {
+      //     var x = moment($scope.writingProgress[i].date_saved).get('date');
+      //     var y = $scope.writingProgress[i].word_total;
+      //     obj[x] = y;
+      //   }
+      //   // return obj;
+      //   var dataPointsz = [];
+      //   var lastTotal = 0;
+      //
+      //   for (var i = 1; i <= moment().get('date'); i++) {
+      //     if (obj.hasOwnProperty(i)) {
+      //       lastTotal = obj[i];
+      //       dataPointsz.push(lastTotal);
+      //     }
+      //     else {
+      //       dataPointsz.push(lastTotal);
+      //     }
+      //   }
+      //   return dataPointsz;
+      // }
 
-        var obj = {};
-        for (var i = 0; i < $scope.writingProgress.length; i++) {
-          var x = moment($scope.writingProgress[i].date_saved).get('date');
-          var y = $scope.writingProgress[i].word_total;
-          obj[x] = y;
-        }
-        // return obj;
-        var dataPointsz = [];
-        var lastTotal = 0;
-
-        for (var i = 1; i <= moment().get('date'); i++) {
-          if (obj.hasOwnProperty(i)) {
-            lastTotal = obj[i];
-            dataPointsz.push(lastTotal);
-          }
-          else {
-            dataPointsz.push(lastTotal);
-          }
-        }
-        return dataPointsz;
-      }
-
-      getLatestStory()
+      // getLatestStory()
       // $timeout(, 0)
 
       // $scope.chartData = createPoints($scope.writingProgress);
