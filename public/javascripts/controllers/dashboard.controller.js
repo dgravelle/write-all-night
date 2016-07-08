@@ -10,7 +10,7 @@
 
       $scope.currentUser = getUser;
       $scope.writingProgress = writingProgress;
-      $scope.allStories = allStories.data;
+      $scope.allStories = allStories;
 
       $scope.latestStory;
 
@@ -58,6 +58,7 @@
       }
 
       getLatestStory();
+
 
       // $scope.chartData = createPoints($scope.writingProgress);
       // $scope.labels = chartMonth;

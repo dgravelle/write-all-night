@@ -8,9 +8,11 @@
 
     function StoriesService($http) {
       return {
-
+        allStories: undefined,
         newStory: function(newStory) {
+          console.log(newStory);
           return $http.post('/stories', newStory).then(story => {
+            console.log('post return ', story);
             return story;
           })
           .catch(err => {
@@ -20,7 +22,6 @@
 
         getStory: function(storyId) {
           return $http.get('/stories/' + storyId).then(story => {
-
             return story;
           })
           .catch(err => {
@@ -39,6 +40,8 @@
 
         getWritingProgress: function(id) {
           return $http.get('/stories/calendar/' + id).then(data => {
+
+
             return data.data;
           })
           .catch(err => {

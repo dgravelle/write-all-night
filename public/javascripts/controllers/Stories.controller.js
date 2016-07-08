@@ -11,6 +11,7 @@
       // $scope.newStory = {}
 
       $scope.addNewStory = function(newStory) {
+        console.log();
         if (!newStory) {
           return 'yo finish filling out the form';
         }

@@ -36,8 +36,6 @@
         console.log('not saving');
       }
 
-
-
       console.log(story);
 
       function getEditor() {
