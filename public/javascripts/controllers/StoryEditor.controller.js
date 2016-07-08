@@ -44,7 +44,6 @@
       function getEditor() {
         $scope.editor = textAngularManager.retrieveEditor('myEditorName');
         // $scope.editor.scope.html = story.story_content;
-        console.log(story.story_content);
         $scope.myEditor = $interpolate(story.story_content)($scope);
 
       }
@@ -54,7 +53,6 @@
         $scope.storyContent = $scope.editor.scope.html;
         StoriesService.saveContent(user_id, { content: $scope.storyContent });
         console.log('saving');
-        console.log($scope.storyContent);
       }
 
       $scope.wordCount = function() {

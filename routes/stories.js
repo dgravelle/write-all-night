@@ -23,11 +23,8 @@ router.post('/', (req, res) => {
 router.put('/saveContent/:id', (req, res) => {
   const id = req.params.id;
   console.log('saving story');
-  console.log(id);
-  console.log(req.body.content);
 
   Stories.update({ 'story_content': req.body.content }).where({ user_id: id }).then(data => {
-    console.log('success',data);
     res.json(data);
   })
   .catch(err => {
@@ -44,7 +41,6 @@ router.get('/calendar/:id', (req, res) => {
 
   StoryProgress.select().where({ user_id: id }).andWhere('date_saved', '>=', firstDate.format()).orderBy('date_saved', 'asc')
   .then(data => {
-    console.log(data);
     var results = [];
     var lastEntry;
     var currentDay = moment(data[0]).get('date');
@@ -73,6 +69,12 @@ router.get('/calendar/:id', (req, res) => {
     res.json(err);
   })
 });
+
+router.get('/calendar/story/:storyId', (req, res) => {
+  const storyId = req.params.storyId;
+
+
+})
 
 router.get('/:id', (req, res) => {
   console.log('id: ', req.params.id);

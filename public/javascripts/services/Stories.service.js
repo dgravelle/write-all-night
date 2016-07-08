@@ -40,8 +40,14 @@
 
         getWritingProgress: function(id) {
           return $http.get('/stories/calendar/' + id).then(data => {
-
-            return data.data;
+            var storyData = {
+              storyProgress: data.data
+            }
+            this.getStory(data.data[0].story_id).then(data => {
+              storyData.storyInfo = data.data;
+              console.log(data);
+            })
+            return storyData;
           })
           .catch(err => {
             return err;

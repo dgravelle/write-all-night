@@ -34,6 +34,7 @@
               return StoriesService.getAllStories($route.current.params.id);
             },
             writingProgress: function(StoriesService, $route) {
+              console.log('route id from config: ', $route.current.params.id);
               return StoriesService.getWritingProgress($route.current.params.id);
             }
           }

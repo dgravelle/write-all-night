@@ -8,11 +8,12 @@
 
     function DashboardController($scope, $timeout, UserService, getUser, allStories, writingProgress) {
 
+      $scope.storyData = writingProgress;
       $scope.currentUser = getUser;
       $scope.writingProgress = writingProgress;
       $scope.allStories = allStories;
-      $scope.latestStory;
 
+      console.log(writingProgress);
 
       function getLatestStory() {
         debugger;
@@ -58,8 +59,8 @@
         return dataPointsz;
       }
 
-
-      $timeout(getLatestStory(), 0)
+      getLatestStory()
+      // $timeout(, 0)
 
       // $scope.chartData = createPoints($scope.writingProgress);
       // $scope.labels = chartMonth;
