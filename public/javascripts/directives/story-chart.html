@@ -12,6 +12,12 @@
         <h3>{{ story.storyInfo.title }}</h3>
         <span>{{ latestTotal }}</span>
         <span> / {{ story.storyInfo.word_goal }}</span>
+        <br>
+        <strong>Days left: </strong>
+        <span>{{ daysLeft }}</span>
+        <br>
+        <strong>Words per day: </strong>
+        <span>{{ wordsPerDay }}</span>
       </div>
       <md-button ng-href="/#/users/{{ story.storyInfo.user_id }}/story/{{ story.storyInfo.id }}">Keep Writing!</md-button>
     </div>

@@ -22,6 +22,10 @@
 
           scope.latestTotal = story.storyProgress[story.storyProgress.length -1].word_total;
 
+          scope.daysLeft = moment().to(story.storyInfo.deadlineEnds, true);
+          scope.wordsPerDay = (story.storyInfo.word_goal - scope.latestTotal) / parseInt(scope.daysLeft);
+
+
           scope.points = makePoints(story.storyProgress);
           scope.labels = chartMonth;
           scope.option = {

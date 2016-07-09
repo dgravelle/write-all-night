@@ -22,11 +22,11 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({
   extended: true,
-  limit: '500mb'
+  limit: '900mb'
 }));
 app.use(bodyParser.json({
   extended: true,
-  limit: '500mb',
+  limit: '900mb',
   type: 'application/json'
 }));
 app.use(cookieParser());
