@@ -14,29 +14,30 @@
           story: '=story',
         },
         link: function (scope, element, attrs) {
-          debugger;
           const story = scope.story;
-          scope.latestTotal = story.storyProgress[story.storyProgress.length -1].word_total;
-          console.log(story);
-
-          // maps x axis points based on days in month
           var chartMonth = [];
+          var interval = moment.duration(
+            moment(story.storyInfo.deadlineEnds) - moment(story.storyInfo.deadlineStarts)
+          ).days();
 
-          var interval = moment.duration(moment(story.storyInfo.deadlineEnds) - moment(story.storyInfo.deadlineStarts)).days();
+          scope.latestTotal = story.storyProgress[story.storyProgress.length -1].word_total;
 
-          for (var i = 1; i <= interval; i++) {
-            chartMonth.push(i.toString());
+          scope.points = makePoints(story.storyProgress);
+          scope.labels = chartMonth;
+          scope.option = {
+            scaleOverride: true,
+            scaleSteps: 50000 / 10000,
+            scaleStepWidth: Math.ceil(50000 / (50000 / 10000)),
+            scaleStartValue: 0
           }
 
-          var makePoints = function(progress) {
+          function makePoints(progress) {
             var obj = {};
             for (var i = 0; i < story.storyProgress.length; i++) {
               var x = moment(story.storyProgress[i].date_saved).get('date');
               var y = story.storyProgress[i].word_total;
               obj[x] = y;
             }
-
-            console.log(obj);
 
             var dataPoints = [];
             var lastTotal = 0;
@@ -54,15 +55,10 @@
             return [dataPoints];
           }
 
-          scope.points = makePoints(story.storyProgress);
-          console.log(scope.points);
-          scope.labels = chartMonth;
-          scope.option = {
-            scaleOverride: true,
-            scaleSteps: 50000 / 10000,
-            scaleStepWidth: Math.ceil(50000 / (50000 / 10000)),
-            scaleStartValue: 0
+          for (var i = 1; i <= interval; i++) {
+            chartMonth.push(i.toString());
           }
+
         }
       }
     }

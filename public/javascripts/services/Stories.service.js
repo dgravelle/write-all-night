@@ -31,6 +31,7 @@
 
         getAllStories: function (userId) {
             return $http.get('/stories/all/' + userId).then(stories => {
+              console.log('all stories ', stories.data);
               return stories.data;
             })
             .catch(err => {
@@ -40,16 +41,20 @@
 
         getWritingProgress: function(id) {
           return $http.get('/stories/calendar/' + id).then(data => {
+            console.log(data);
             var storyData = {
               storyProgress: data.data
             }
 
-            this.getStory(data.data[0].story_id).then(data => {
+            return this.getStory(data.data[0].story_id).then(data => {
+              console.log(data);
               storyData.storyInfo = data.data;
+              return storyData;
             })
-
-            return storyData;
-            
+            .catch(err => {
+              console.log(err);
+              return err;
+            })
           })
           .catch(err => {
             return err;
@@ -63,7 +68,7 @@
             word_count: wordTotal
           }
 
-          $http.post('/stories/saving-progress', story).then(story => {
+          return $http.post('/stories/saving-progress', story).then(story => {
             return story;
           })
           .catch(err => {
@@ -72,9 +77,7 @@
         },
 
         saveContent: function(id, content) {
-          // alert('saving story :)');
-          // var options = { 'Content-Type': 'application/x-www-form-urlencoded' }
-          $http({
+          return $http({
             method: 'put',
             url: '/stories/saveContent/' + id,
             headers: { 'Content-Type': 'application/json' },

@@ -39,7 +39,7 @@
       self.currentUser = {};
 
       self.setCurrentUser = function(user) {
-        return this.currentUser = user;
+        this.currentUser = user;
       }
 
       self.getUser = function(id) {

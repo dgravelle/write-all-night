@@ -2,15 +2,20 @@ const express = require('express');
 const router = express.Router();
 const moment = require('moment');
 const knex = require('../db/knex');
-const Stories = knex('stories');
-const StoryProgress = knex('story_progress');
 
+function Stories() {
+  return knex('stories');
+}
+
+function StoryProgress() {
+  return knex('story_progress');
+}
 
 
 router.post('/', (req, res) => {
   console.log(req.body);
 
-  Stories.insert(req.body, '*').then(story => {
+  Stories().insert(req.body, '*').then(story => {
     res.json(story);
   })
   .catch(err => {
@@ -24,11 +29,12 @@ router.put('/saveContent/:id', (req, res) => {
   const id = req.params.id;
   console.log('saving story');
 
-  Stories.update({ 'story_content': req.body.content }).where({ user_id: id }).then(data => {
-    res.json(data);
+  res.json('ok');
+  Stories().update({ 'story_content': req.body.content }).where({ user_id: id }).then(data => {
+    console.log('saved!');
   })
   .catch(err => {
-    res.json(err);
+    console.log(err);
   })
 });
 
@@ -39,7 +45,7 @@ router.get('/calendar/:id', (req, res) => {
   const id = req.params.id;
   console.log(id);
 
-  StoryProgress.select().where({ user_id: id }).andWhere('date_saved', '>=', firstDate.format()).orderBy('date_saved', 'asc')
+  StoryProgress().select().where({ user_id: id }).andWhere('date_saved', '>=', firstDate.format()).orderBy('date_saved', 'asc')
   .then(data => {
     var results = [];
     var lastEntry;
@@ -79,7 +85,7 @@ router.get('/calendar/story/:storyId', (req, res) => {
 router.get('/:id', (req, res) => {
   console.log('id: ', req.params.id);
 
-  Stories.select().where({ id: req.params.id }).first().then(story => {
+  Stories().select().where({ id: req.params.id }).first().then(story => {
     console.log('story: ', story);
 
     res.json(story);
@@ -96,7 +102,7 @@ router.get('/all/:id', (req, res) => {
 
   console.log('user_id: ', user_id);
 
-  Stories.select().where({ user_id: user_id }).then(stories => {
+  Stories().select().where({ user_id: user_id }).then(stories => {
     console.log(stories);
     res.json(stories);
   })
@@ -109,7 +115,7 @@ router.get('/all/:id', (req, res) => {
 router.get('/latest/:id', (req, res) => {
   const user_id = req.params.id;
   console.log(user_id);
-  StoryProgress.select().where({ user_id: user_id }).first().then(latest => {
+  StoryProgress().select().where({ user_id: user_id }).first().then(latest => {
     console.log('latest', latest);
     if (!latest) {
       res.json('no stories')
@@ -124,7 +130,7 @@ router.get('/latest/:id', (req, res) => {
 router.post('/saving-progress', (req, res) => {
   console.log('saving progress: ', req.body);
 
-  StoryProgress.insert({
+  StoryProgress().insert({
     user_id: req.body.user_id,
     story_id: req.body.story_id,
     date_saved: new Date(),

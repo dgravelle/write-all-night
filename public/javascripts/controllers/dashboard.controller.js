@@ -13,7 +13,7 @@
       $scope.writingProgress = writingProgress;
       $scope.allStories = allStories;
 
-      console.log(writingProgress);
+      // console.log(writingProgress);
 
       // function getLatestStory() {
       //   debugger;
@@ -27,13 +27,13 @@
       //     }
       //   }
       // }
-
-      var chartMonth = [];
-      var chartPoints = [];
-
-      for (var i = 1; i <= moment().daysInMonth(); i++) {
-        chartMonth.push(i.toString());
-      }
+      //
+      // var chartMonth = [];
+      // var chartPoints = [];
+      //
+      // for (var i = 1; i <= moment().daysInMonth(); i++) {
+      //   chartMonth.push(i.toString());
+      // }
 
       // function createPoints(progress) {
       //
