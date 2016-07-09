@@ -9,6 +9,7 @@ var config = require('./config');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var stories = require('./routes/stories');
+var progress = require('./routes/progress');
 
 var app = express();
 
@@ -29,6 +30,7 @@ app.set('secret', config.secret);
 app.use('/', routes);
 app.use('/users', users);
 app.use('/stories', stories);
+app.use('/progress', progress);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -7,11 +7,13 @@
       chart-options="option"></canvas>
   </div>
   <div flex>
-    <h2>Latest writing</h2>
     <div class="latest-container">
-      <h3>{{ story.storyInfo.title }}</h3>
-      <span>{{ latestTotal }}</span>
-      <span> / {{ story.storyInfo.word_goal }}</span>
+      <div>
+        <h3>{{ story.storyInfo.title }}</h3>
+        <span>{{ latestTotal }}</span>
+        <span> / {{ story.storyInfo.word_goal }}</span>
+      </div>
+      <md-button ng-href="/#/users/{{ story.storyInfo.user_id }}/story/{{ story.storyInfo.id }}">Keep Writing!</md-button>
     </div>
   </div>
 </div>

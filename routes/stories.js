@@ -83,10 +83,10 @@ router.get('/calendar/story/:storyId', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-  console.log('id: ', req.params.id);
+  // console.log('id: ', req.params.id);
 
   Stories().select().where({ id: req.params.id }).first().then(story => {
-    console.log('story: ', story);
+    // console.log('story: ', story);
 
     res.json(story);
   })
@@ -103,7 +103,7 @@ router.get('/all/:id', (req, res) => {
   console.log('user_id: ', user_id);
 
   Stories().select().where({ user_id: user_id }).then(stories => {
-    console.log(stories);
+    // console.log(stories);
     res.json(stories);
   })
   .catch(err => {
@@ -116,7 +116,7 @@ router.get('/latest/:id', (req, res) => {
   const user_id = req.params.id;
   console.log(user_id);
   StoryProgress().select().where({ user_id: user_id }).first().then(latest => {
-    console.log('latest', latest);
+    // console.log('latest', latest);
     if (!latest) {
       res.json('no stories')
     }

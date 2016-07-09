@@ -13,8 +13,8 @@ function makeJWT(user) {
 }
 
 function tokenCheck(req, res, next) {
-  console.log('checking token');
-  console.log(req.headers.authorization);
+  // console.log('checking token');
+  // console.log(req.headers.authorization);
   if (!req.headers.authorization) {
     res.status(403);
     res.json({ message: 'no token, no web site' });

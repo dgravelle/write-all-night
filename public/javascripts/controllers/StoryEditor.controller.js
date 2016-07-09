@@ -30,11 +30,12 @@
       $scope.focused = false;
       $scope.onFocus = function() {
         $scope.focused = true;
-        saveProgress();
+
       }
 
       $scope.loseFocus = function() {
         $scope.focused = false;
+        saveProgress();
         $interval.cancel(save);
         console.log('not saving');
       }
