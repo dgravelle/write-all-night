@@ -33,8 +33,16 @@
   </md-toolbar>
   <md-list flex>
     <md-list-item ng-repeat="story in allStories">
-      <h3>{{ story.title }}</h3>
-      <span>{{ story.created_at }}</span>
+      <div layout="row" flex="100">
+        <div flex="66">
+          <h3>{{ story.title }}</h3>
+          <span>{{ story.created_at }}</span>
+        </div>
+        <div flex="33" layout="row" layout-align="end end">
+          <md-button class="md-raised" href="/#/users/{{ currentUser.id}}/story/{{ story.id }}">Get writing!</md-button>
+        </div>
+        <hr>
+      </div>
     </md-list-item>
   </md-list>
 </div>
