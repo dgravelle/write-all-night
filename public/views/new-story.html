@@ -1,6 +1,6 @@
 
-<md-content layout="row" layout-align="center">
-  <md-card layout="column" flex="50" layout-padding>
+<md-content layout="row" layout-align="center center">
+  <md-card layout-padding flex-gt-sm="50" flex="90">
     <form ng-submit="addNewStory(newStory)">
       <h1>Start a new story!</h1>
       <md-input-container>
@@ -22,11 +22,12 @@
           <label for="deadlineEnds">Deadline</label>
           <md-datepicker id="deadlineEnds" ng-model="newStory.deadlineEnds"></md-datepicker>
           <br>
-        <md-input-container>
-          <label for="word_goal">Word Goal</label>
-          <input id="word_goal" type="number" max="1000000" ng-model="newStory.word_goal">
-        </md-input-container>
       </div>
+      <br>
+      <md-input-container>
+        <label for="word_goal">Word Goal</label>
+        <input id="word_goal" type="number" max="1000000" ng-model="newStory.word_goal">
+      </md-input-container>
       <div></div>
       <md-button class="md-primary md-raised" type="submit">Get Started!</md-button>
     </form>
