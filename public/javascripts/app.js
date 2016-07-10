@@ -53,6 +53,23 @@
               return StoriesService.getStory($route.current.params.storyId);
             }
           }
+        })
+        .when('/users/:id/stories', {
+          templateUrl: 'views/stories.html',
+          controller: 'DashboardController',
+          restricted: true,
+          resolve: {
+            getUser: function (UserService, $route) {
+              return UserService.getUser($route.current.params.id);
+            },
+            allStories: function(StoriesService, $route) {
+              return StoriesService.getAllStories($route.current.params.id);
+            },
+            writingProgress: function(StoriesService, $route) {
+              console.log('route id from config: ', $route.current.params.id);
+              return StoriesService.getWritingProgress($route.current.params.id);
+            }
+          }
         });
         $httpProvider.interceptors.push('AuthInterceptor');
 
