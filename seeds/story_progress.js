@@ -17,7 +17,9 @@ exports.seed = function(knex, Promise) {
         moment('2016-07-05 10:00:00'),
         moment('2016-07-06 10:00:00'),
         moment('2016-07-07 10:00:00'),
-        moment('2016-07-09 10:00:00')
+        moment('2016-07-08 10:00:00'),
+        moment('2016-07-09 10:00:00'),
+        moment('2016-07-10 10:00:00')
       ]
 
       var word_total = 0;

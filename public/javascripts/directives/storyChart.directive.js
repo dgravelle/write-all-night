@@ -37,13 +37,15 @@
           scope.writingStreak = 0;
 
           while (makingStreak) {
+            debugger;
             var dateInLoop = moment(story.storyProgress[index].date_saved).get('date');
 
             console.log(dateInLoop);
+            console.log(lastDateInStreak);
 
             // see if date in progress array is
             if (dateInLoop >=  lastDateInStreak) {
-              lastDateInStreak = dateInLoop;
+              lastDateInStreak = dateInLoop - 1;
               scope.writingStreak += 1;
               index--;
             }
