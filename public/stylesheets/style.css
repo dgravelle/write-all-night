@@ -10,7 +10,7 @@ a {
 .banner--home {
   background-image: url('../images/home-banner.jpg');
   background-size: cover;
-  height: 400px;
+  height: 100%;
   text-align: center;
 }
 
@@ -29,4 +29,10 @@ a {
 
 .bg-opaque {
   background: rgba(0,0,0,0.35);
+}
+
+/* override utilities */
+
+.no-margin {
+  margin: 0;
 }

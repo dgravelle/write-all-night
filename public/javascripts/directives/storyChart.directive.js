@@ -20,10 +20,39 @@
             moment(story.storyInfo.deadlineEnds) - moment(story.storyInfo.deadlineStarts)
           ).days();
 
-          scope.latestTotal = story.storyProgress[story.storyProgress.length -1].word_total;
 
+          scope.latestTotal = story.storyProgress[story.storyProgress.length -1].word_total;
+          scope.percentComplete = (scope.latestTotal / story.storyInfo.word_goal) * 100;
           scope.daysLeft = moment().to(story.storyInfo.deadlineEnds, true);
           scope.wordsPerDay = (story.storyInfo.word_goal - scope.latestTotal) / parseInt(scope.daysLeft);
+          scope.writingStreak;
+
+          console.log(story.storyProgress);
+
+          var makingStreak = true;
+          var index = story.storyProgress.length - 1;
+          // set date in streak to current date
+          // while looping the date will be set to the last date of writing
+          var lastDateInStreak = (moment().get('date') - 1);
+          scope.writingStreak = 0;
+
+          while (makingStreak) {
+            var dateInLoop = moment(story.storyProgress[index].date_saved).get('date');
+
+            console.log(dateInLoop);
+
+            // see if date in progress array is
+            if (dateInLoop >=  lastDateInStreak) {
+              lastDateInStreak = dateInLoop;
+              scope.writingStreak += 1;
+              index--;
+            }
+            else {
+              makingStreak = false;
+            }
+          }
+
+
 
 
           scope.points = makePoints(story.storyProgress);

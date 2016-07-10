@@ -9,10 +9,6 @@
     function DashboardController($scope, $timeout, $mdSidenav, UserService, getUser, allStories, writingProgress) {
       // side nav
 
-      // $scope.openLeftMenu = function() {
-      //   $mdSidenav('left').toggle();
-      // };
-
       console.log(writingProgress);
       // story chart
       $scope.storyData = writingProgress;
@@ -21,6 +17,5 @@
       $scope.allStories = allStories;
 
       // writing progress
-
     }
 })()

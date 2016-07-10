@@ -1,4 +1,7 @@
-<div layout="row" layout-xs="column">
+<div layout="row" class="story-progress" layout-xs="column">
+  <md-whiteframe class="md-whiteframe-1dp" flex="50" layout-padding layout-margin>
+
+
   <div flex>
     <canvas id="line"
       class="chart chart-line"
@@ -6,20 +9,55 @@
       chart-labels="labels"
       chart-options="option"></canvas>
   </div>
-  <div flex>
-    <div class="latest-container">
+  </md-whiteframe>
+
+  <md-whiteframe class="md-whiteframe-1dp"  flex="" layout-margin>
+    <md-toolbar class="text-center no-margin md-hue-1">
+      <h3>{{ story.storyInfo.title }}</h3>
+    </md-toolbar>
+    <md-content>
       <div>
-        <h3>{{ story.storyInfo.title }}</h3>
-        <span>{{ latestTotal }}</span>
-        <span> / {{ story.storyInfo.word_goal }}</span>
-        <br>
+        <p>
+          <strong>Complete: </strong>
+          <span> {{ percentComplete | number : 2 }} %</span>
+        </p>
+      </div>
+      <div>
+        <p>
+          <strong>to hit your deadline, you need to write </strong>
+          <span>{{ wordsPerDay | number : 0 }} per day</span>
+        </p>
+      </div>
+      <div>
+        <p>
+          <strong>Current writing streak</strong>
+          <span>{{ writingStreak }} day(s)</span>
+        </p>
+      </div>
+      <md-button class="md-raised" ng-href="/#/users/{{ story.storyInfo.user_id }}/story/{{ story.storyInfo.id }}">Keep Writing!</md-button>
+    </md-content>
+    <div class="story-progress__footer">
+    </div>
+  </md-whiteframe>
+<!--
+  <md-card flex="50">
+    <md-card-title>
+      <md-card-title-text>
+      </md-card-title-text>
+    </md-card-title>
+    <md-card-content>
+        <div>
+          <span>{{ latestTotal }}</span>
+          <span> / {{ story.storyInfo.word_goal }}</span>
+        </div>
         <strong>Days left: </strong>
         <span>{{ daysLeft }}</span>
         <br>
         <strong>Words per day: </strong>
         <span>{{ wordsPerDay }}</span>
-      </div>
+      </md-card-content>
+    <md-card-actions>
       <md-button ng-href="/#/users/{{ story.storyInfo.user_id }}/story/{{ story.storyInfo.id }}">Keep Writing!</md-button>
-    </div>
-  </div>
+    </md-card-actions>
+  </md-card> -->
 </div>
