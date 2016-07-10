@@ -8,6 +8,7 @@
 
     function DashboardController($scope, $timeout, UserService, getUser, allStories, writingProgress) {
 
+      console.log(writingProgress);
       // story chart
       $scope.storyData = writingProgress;
       $scope.currentUser = getUser;
@@ -15,8 +16,6 @@
       $scope.allStories = allStories;
 
       // writing progress
-      // $scope.month = moment().month();
-      // $scope.year = moment().year();
 
     }
 })()
