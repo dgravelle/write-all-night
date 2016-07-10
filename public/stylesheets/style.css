@@ -7,8 +7,11 @@ a {
   color: #00B7FF;
 }*/
 
-.banner--home {
+.bg {
   background-image: url('../images/home-banner.jpg');
+}
+
+.banner--home {
   background-size: cover;
   height: 100%;
   text-align: center;

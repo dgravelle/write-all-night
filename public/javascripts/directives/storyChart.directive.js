@@ -37,7 +37,6 @@
           scope.writingStreak = 0;
 
           while (makingStreak) {
-            debugger;
             var dateInLoop = moment(story.storyProgress[index].date_saved).get('date');
 
             console.log(dateInLoop);

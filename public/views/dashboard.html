@@ -9,28 +9,8 @@
     </section>
 
 
-    <div flex>
-      <md-toolbar layout="row">
-        <div class="md-toolbar-tools">
-          <h2>Your Stories</h2>
-        </div>
-      </md-toolbar>
-      <md-list flex>
-        <md-list-item ng-repeat="story in allStories">
-          <div layout="row" flex="100">
-            <div flex="66">
-              <h3>{{ story.title }}</h3>
-              <span>{{ story.created_at }}</span>
-            </div>
-            <div flex="33" layout="row" layout-align="end end">
-              <md-button class="md-raised" href="/#/users/{{ currentUser.id}}/story/{{ story.id }}">Get writing!</md-button>
-            </div>
-            <hr>
-          </div>
-        </md-list-item>
-      </md-list>
-    </div>
-    <div layout="row">
+
+    <div layout="row" layout-align="end">
       <md-button href="/#/users/{{ currentUser.id}}/new-story" class="md-raised md-primary">Start a new Story!</md-button>
     </div>
 
