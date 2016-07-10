@@ -22,7 +22,7 @@
       const save = $interval(saveProgress, 60000);
       const story = getStory.data;
 
-
+      $scope.title = story.title
 
       $scope.storyContent;
       $scope.editor;
@@ -53,7 +53,7 @@
         StoriesService.saveContent(user_id, { content: $scope.storyContent });
         console.log('saving');
       }
-      
+
       $scope.$on('$destroy', () => {
         saveProgress();
         $interval.cancel(save);

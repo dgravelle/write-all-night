@@ -1,43 +1,42 @@
 
-
-<div layout="row">
-  <h1>Welcome</h1>
-</div>
-
-
-<section id="latestWriting">
-  <div layout="row">
-    <md-toolbar>
-      <div class="md-toolbar-tools">
-        <h2>Your latest writing</h2>
+<!-- <main layout="row"> -->
+  <md-content flex="100">
+    <section id="latestWriting">
+      <div layout="row">
+        <md-toolbar class="">
+          <div class="md-toolbar-tools">
+            <h2>Your latest writing</h2>
+          </div>
+        </md-toolbar>
       </div>
-    </md-toolbar>
-  </div>
-  <story-chart story="storyData"></story-chart>
-</section>
+      <story-chart story="storyData"></story-chart>
+    </section>
 
 
-<div flex-gt-sm="50" flex>
-  <md-toolbar layout="row">
-    <div class="md-toolbar-tools">
-      <h2>Your Stories</h2>
+    <div flex>
+      <md-toolbar layout="row">
+        <div class="md-toolbar-tools">
+          <h2>Your Stories</h2>
+        </div>
+      </md-toolbar>
+      <md-list flex>
+        <md-list-item ng-repeat="story in allStories">
+          <div layout="row" flex="100">
+            <div flex="66">
+              <h3>{{ story.title }}</h3>
+              <span>{{ story.created_at }}</span>
+            </div>
+            <div flex="33" layout="row" layout-align="end end">
+              <md-button class="md-raised" href="/#/users/{{ currentUser.id}}/story/{{ story.id }}">Get writing!</md-button>
+            </div>
+            <hr>
+          </div>
+        </md-list-item>
+      </md-list>
     </div>
-  </md-toolbar>
-  <md-list flex>
-    <md-list-item ng-repeat="story in allStories">
-      <div layout="row" flex="100">
-        <div flex="66">
-          <h3>{{ story.title }}</h3>
-          <span>{{ story.created_at }}</span>
-        </div>
-        <div flex="33" layout="row" layout-align="end end">
-          <md-button class="md-raised" href="/#/users/{{ currentUser.id}}/story/{{ story.id }}">Get writing!</md-button>
-        </div>
-        <hr>
-      </div>
-    </md-list-item>
-  </md-list>
-</div>
-<div layout="row">
-  <md-button href="/#/users/{{ currentUser.id}}/new-story" class="md-raised md-primary">Start a new Story!</md-button>
-</div>
+    <div layout="row">
+      <md-button href="/#/users/{{ currentUser.id}}/new-story" class="md-raised md-primary">Start a new Story!</md-button>
+    </div>
+
+  </md-content>
+<!-- </main> -->

@@ -4,9 +4,14 @@
     .module('app')
     .controller('DashboardController', DashboardController)
 
-    DashboardController.$inject = ['$scope', '$timeout', 'UserService', 'getUser', 'allStories', 'writingProgress'];
+    DashboardController.$inject = ['$scope', '$timeout', '$mdSidenav', 'UserService', 'getUser', 'allStories', 'writingProgress'];
 
-    function DashboardController($scope, $timeout, UserService, getUser, allStories, writingProgress) {
+    function DashboardController($scope, $timeout, $mdSidenav, UserService, getUser, allStories, writingProgress) {
+      // side nav
+
+      // $scope.openLeftMenu = function() {
+      //   $mdSidenav('left').toggle();
+      // };
 
       console.log(writingProgress);
       // story chart
