@@ -30,16 +30,14 @@
       $scope.focused = false;
       $scope.onFocus = function() {
         $scope.focused = true;
-        saveProgress();
+
       }
 
       $scope.loseFocus = function() {
         $scope.focused = false;
+        saveProgress();
         $interval.cancel(save);
-        console.log('not saving');
       }
-
-      console.log(story);
 
       function getEditor() {
         $scope.editor = textAngularManager.retrieveEditor('myEditorName');
@@ -49,17 +47,13 @@
       }
 
       function saveProgress() {
-        StoriesService.saveProgress(user_id, story.id, $scope.wordTotal);
+        console.log('word from editor: ', $scope.editor.scope.wordcount);
+        StoriesService.saveProgress(user_id, story.id, $scope.editor.scope.wordcount);
         $scope.storyContent = $scope.editor.scope.html;
         StoriesService.saveContent(user_id, { content: $scope.storyContent });
         console.log('saving');
       }
-
-      $scope.wordCount = function() {
-        $scope.wordTotal = $scope.editor.scope.wordcount;
-      }
-
-
+      
       $scope.$on('$destroy', () => {
         saveProgress();
         $interval.cancel(save);
