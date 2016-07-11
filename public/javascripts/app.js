@@ -2,7 +2,7 @@
 
   angular
     .module('app', ['ngRoute', 'ngMaterial', 'textAngular', 'materialCalendar', 'chart.js', 'angularMoment'])
-    .config(function($routeProvider, $httpProvider) {
+    .config(function($routeProvider, $httpProvider, $mdThemingProvider) {
       $routeProvider
         .when('/', {
           homePage: true,
@@ -73,8 +73,10 @@
         });
         $httpProvider.interceptors.push('AuthInterceptor');
 
+        $mdThemingProvider.theme('default')
+          .primaryPalette('blue')
+          .accentPalette('blue-grey');
     })
-
     .run(function($rootScope, $location, $window) {
       $rootScope.$on('$routeChangeStart', function (event, next, current) {
         if (next.restricted && !$window.localStorage.getItem('user')) {

@@ -1,54 +1,68 @@
 <div layout="row" class="story-progress" layout-xs="column">
-  <md-whiteframe class="md-whiteframe-1dp"  flex="33" layout-margin layout-padding>
+  <md-whiteframe class="md-whiteframe-1dp"  flex="33" layout="column" layout-margin layout-padding>
       <h3>Title: {{ story.storyInfo.title }}</h3>
-
+      <div>
+        <p>
+          <strong>Started on: </strong>{{ story.storyInfo.deadlineStarts | date : 'MM dd yyyy'}}
+        </p>
+        <p>
+          <strong>Deadline: </strong>{{ story.storyInfo.deadlineEnds | date : 'MM dd yyyy'}}
+        </p>
+      </div>
 
 
       <div>
         <p>
           <strong>Current writing streak</strong>
-          <span>{{ writingStreak }} day(s)</span>
         </p>
+        <span>{{ writingStreak }} day(s)</span>
       </div>
-      <md-button class="md-raised" ng-href="/#/users/{{ story.storyInfo.user_id }}/story/{{ story.storyInfo.id }}">Keep Writing!</md-button>
-    <div class="story-progress__footer">
-    </div>
+      <div layout="row" layout-align="end end">
+        <md-button class="md-raised" ng-href="/#/users/{{ story.storyInfo.user_id }}/story/{{ story.storyInfo.id }}">Keep Writing!</md-button>
+      </div>
   </md-whiteframe>
   <md-whiteframe class="md-whiteframe-1dp" flex="66" layout-padding layout-margin>
-
-
   <div flex>
     <canvas id="line"
       class="chart chart-line"
       chart-data="points"
       chart-labels="labels"
-      chart-options="option"></canvas>
+      chart-options="option"
+      ></canvas>
   </div>
   </md-whiteframe>
 </div>
-<div layout="row" class="text-center" layout-padding>
+<section layout="row" class="text-center md-accent md-hue-1" layout-padding>
   <div flex layout="column">
     <p>
-      <strong>Complete: </strong>
+      <strong>Completed</strong>
     </p>
     <p>
-      <span> {{ percentComplete | number : 2 }} %</span>
+      <span class="stats__stat"> {{ percentComplete | number : 2 }}%</span>
     </p>
   </div>
   <div flex layout="column">
     <p>
-      <strong>Avg words / day</strong>
+      <strong>Avg words per day</strong>
     </p>
     <p>
-      <span>{{ wordsPerDay | number : 0 }} per day</span>
+      <span class="stats__stat">
+        {{ wordsPerDay | number : 0 }}
+      </span>
     </p>
   </div>
   <div flex layout="column">
     <p>
-      <strong>to hit your deadline, <br> you need to write </strong>
+      <strong>you need to write </strong>
     </p>
     <p>
-      <span>{{ wordsPerDayLeft | number : 0 }} per day</span>
+      <span class="stats__stat">
+        {{ wordsPerDayLeft | number : 0 }}
+        <br>
+        </span>
+    </p>
+    <p>
+      <strong>words per day to hit your deadline</strong>
     </p>
   </div>
   <div flex layout="column">
@@ -56,28 +70,7 @@
       <strong>Days left</strong>
     </p>
     <p>
-      <span>{{ daysLeft }}</span>
+      <span class="stats__stat">{{ daysLeft }}</span>
     </p>
   </div>
-</div>
-<!--
-  <md-card flex="50">
-    <md-card-title>
-      <md-card-title-text>
-      </md-card-title-text>
-    </md-card-title>
-    <md-card-content>
-        <div>
-          <span>{{ latestTotal }}</span>
-          <span> / {{ story.storyInfo.word_goal }}</span>
-        </div>
-        <strong>Days left: </strong>
-        <span>{{ daysLeft }}</span>
-        <br>
-        <strong>Words per day: </strong>
-        <span>{{ wordsPerDay }}</span>
-      </md-card-content>
-    <md-card-actions>
-      <md-button ng-href="/#/users/{{ story.storyInfo.user_id }}/story/{{ story.storyInfo.id }}">Keep Writing!</md-button>
-    </md-card-actions>
-  </md-card> -->
+</section>

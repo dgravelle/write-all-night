@@ -30,7 +30,6 @@
             (story.storyInfo.word_goal - scope.latestTotal) / parseInt(scope.daysLeft)
           );
 
-          debugger;
           scope.wordsPerDay = (
             story.storyProgress[story.storyProgress.length - 1 ].word_total /
             story.storyProgress.length

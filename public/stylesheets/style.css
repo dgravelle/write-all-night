@@ -7,11 +7,8 @@ a {
   color: #00B7FF;
 }*/
 
-.bg {
-  background-image: url('../images/home-banner.jpg');
-}
-
 .banner--home {
+  background-image: url('../images/home-banner.jpg');
   background-size: cover;
   height: 100%;
   text-align: center;
@@ -38,4 +35,15 @@ a {
 
 .no-margin {
   margin: 0;
+}
+
+/* Dashboard */
+
+.latestWriting__h2  {
+  margin: 0;
+}
+
+.stats__stat {
+  font-size: 250%;
+  font-weight: bold;
 }

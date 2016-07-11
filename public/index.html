@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>Write All Night</title>
 
-  <!-- <link rel="stylesheet" href="node_modules/angular-material/angular-material.css"> -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.0-rc.5/angular-material.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/textAngular/1.5.1/textAngular.css">
   <link rel="stylesheet" href="stylesheets/font-awesome.min.css">
@@ -51,23 +50,27 @@
 </head>
 <body ng-app="app" ng-cloak>
   <div ng-controller="NavBar">
-    <md-nav-bar class="md-primary md-hue-2" ng-show="!loggedIn" md-selected-nav-item="currentNavItem" aria-label="navigation">
-        <md-nav-item md-nav-href="/#/" name="/">Home</md-nav-item>
-        <md-nav-item md-nav-href="/#/signup" name="signup" >Signup</md-nav-item>
-        <md-nav-item md-nav-href="/#/login" name="login" >Login</md-nav-item>
-    </md-nav-bar>
-    <md-nav-bar class="md-primary md-hue-2" ng-show="loggedIn" md-selected-nav-item="currentNavItem" aria-label="navigation">
-        <md-nav-item name="dashboard" md-nav-href="/#/users/{{ userId }}" name="home">Dashboard</md-nav-item>
-        <md-nav-item md-nav-href="/#/users/{{ userId }}/stories" name="login" >Your Stories</md-nav-item>
-        <md-nav-item md-nav-click="logOut()" name="login" >Logout</md-nav-item>
-    </md-nav-bar>
+      <md-toolbar class="md-primary" ng-show="!loggedIn"  aria-label="navigation">
+        <div class="md-toolbar-tools">
+          <md-button ng-href="/#/" aria-label="home">Home</md-button>
+          <span flex></span>
+          <md-button ng-href="/#/signup"  aria-label="signup" >Signup</md-button>
+          <md-button ng-href="/#/login"  aria-label="login" >Login</md-button>
+        </div>
+      </md-toolbar>
+      <md-toolbar layout="row" class="md-primary md-hue-2" ng-show="loggedIn" aria-label="navigation">
+        <div class="md-toolbar-tools">
+          <md-button  aria-label="dashboard" ng-href="/#/users/{{ userId }}" >Dashboard</md-button>
+          <md-button ng-href="/#/users/{{ userId }}/stories"  aria-label="stories" >Your Stories</md-button>
+          <span flex></span>
+          <md-button ng-href="/#/" ng-click="logOut()"  aria-label="logout" >Logout</md-button>
+        </div>
+      </md-toolbar>
   </div>
 
-  <main>
-    <md-content>
-      <div ng-view></div>
-    </md-content>
-  </main>
+
+
+      <div ng-view style="height:100%;"></div>
 
 
 </body>

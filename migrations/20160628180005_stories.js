@@ -12,7 +12,6 @@ exports.up = function(knex, Promise) {
       t.boolean('deadline');
       t.date('deadlineStarts');
       t.date('deadlineEnds');
-      t.dateTime('created_on');
     })
   ])
 };
