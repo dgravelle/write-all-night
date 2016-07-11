@@ -23,8 +23,18 @@
 
           scope.latestTotal = story.storyProgress[story.storyProgress.length -1].word_total;
           scope.percentComplete = (scope.latestTotal / story.storyInfo.word_goal) * 100;
+
           scope.daysLeft = moment().to(story.storyInfo.deadlineEnds, true);
-          scope.wordsPerDay = (story.storyInfo.word_goal - scope.latestTotal) / parseInt(scope.daysLeft);
+
+          scope.wordsPerDayLeft = (
+            (story.storyInfo.word_goal - scope.latestTotal) / parseInt(scope.daysLeft)
+          );
+
+          debugger;
+          scope.wordsPerDay = (
+            story.storyProgress[story.storyProgress.length - 1 ].word_total /
+            story.storyProgress.length
+          )
           scope.writingStreak;
 
           console.log(story.storyProgress);

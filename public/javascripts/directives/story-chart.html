@@ -1,5 +1,20 @@
 <div layout="row" class="story-progress" layout-xs="column">
-  <md-whiteframe class="md-whiteframe-1dp" flex="50" layout-padding layout-margin>
+  <md-whiteframe class="md-whiteframe-1dp"  flex="33" layout-margin layout-padding>
+      <h3>Title: {{ story.storyInfo.title }}</h3>
+
+
+
+      <div>
+        <p>
+          <strong>Current writing streak</strong>
+          <span>{{ writingStreak }} day(s)</span>
+        </p>
+      </div>
+      <md-button class="md-raised" ng-href="/#/users/{{ story.storyInfo.user_id }}/story/{{ story.storyInfo.id }}">Keep Writing!</md-button>
+    <div class="story-progress__footer">
+    </div>
+  </md-whiteframe>
+  <md-whiteframe class="md-whiteframe-1dp" flex="66" layout-padding layout-margin>
 
 
   <div flex>
@@ -10,35 +25,41 @@
       chart-options="option"></canvas>
   </div>
   </md-whiteframe>
-
-  <md-whiteframe class="md-whiteframe-1dp"  flex="" layout-margin>
-    <md-toolbar class="text-center no-margin md-hue-1">
-      <h3>{{ story.storyInfo.title }}</h3>
-    </md-toolbar>
-    <md-content>
-      <div>
-        <p>
-          <strong>Complete: </strong>
-          <span> {{ percentComplete | number : 2 }} %</span>
-        </p>
-      </div>
-      <div>
-        <p>
-          <strong>to hit your deadline, you need to write </strong>
-          <span>{{ wordsPerDay | number : 0 }} per day</span>
-        </p>
-      </div>
-      <div>
-        <p>
-          <strong>Current writing streak</strong>
-          <span>{{ writingStreak }} day(s)</span>
-        </p>
-      </div>
-      <md-button class="md-raised" ng-href="/#/users/{{ story.storyInfo.user_id }}/story/{{ story.storyInfo.id }}">Keep Writing!</md-button>
-    </md-content>
-    <div class="story-progress__footer">
-    </div>
-  </md-whiteframe>
+</div>
+<div layout="row" class="text-center" layout-padding>
+  <div flex layout="column">
+    <p>
+      <strong>Complete: </strong>
+    </p>
+    <p>
+      <span> {{ percentComplete | number : 2 }} %</span>
+    </p>
+  </div>
+  <div flex layout="column">
+    <p>
+      <strong>Avg words / day</strong>
+    </p>
+    <p>
+      <span>{{ wordsPerDay | number : 0 }} per day</span>
+    </p>
+  </div>
+  <div flex layout="column">
+    <p>
+      <strong>to hit your deadline, <br> you need to write </strong>
+    </p>
+    <p>
+      <span>{{ wordsPerDayLeft | number : 0 }} per day</span>
+    </p>
+  </div>
+  <div flex layout="column">
+    <p>
+      <strong>Days left</strong>
+    </p>
+    <p>
+      <span>{{ daysLeft }}</span>
+    </p>
+  </div>
+</div>
 <!--
   <md-card flex="50">
     <md-card-title>
@@ -60,4 +81,3 @@
       <md-button ng-href="/#/users/{{ story.storyInfo.user_id }}/story/{{ story.storyInfo.id }}">Keep Writing!</md-button>
     </md-card-actions>
   </md-card> -->
-</div>
