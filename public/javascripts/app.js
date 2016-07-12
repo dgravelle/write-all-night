@@ -1,7 +1,7 @@
 (function () {
 
   angular
-    .module('app', ['ngRoute', 'ngMaterial', 'textAngular', 'materialCalendar', 'chart.js', 'angularMoment'])
+    .module('app', ['ngRoute', 'ngMaterial', 'textAngular', 'materialCalendar', 'chart.js', 'angularMoment', 'ngMessages'])
     .config(function($routeProvider, $httpProvider, $mdThemingProvider) {
       $routeProvider
         .when('/', {
@@ -19,7 +19,7 @@
         .when('/signup', {
           restricted: false,
           notForLoggedIn: true,
-          templateUrl: 'views/register.html',
+          templateUrl: 'views/signup.html',
           controller: 'RegisterController'
         })
         .when('/users/:id', {

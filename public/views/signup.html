@@ -1,0 +1,25 @@
+<md-content layout="row" layout-align="center">
+  <md-card flex="50" layout-padding>
+    <form name="signup" ng-submit="handleRegistration()">
+      <h1>Sign up to write all night!</h1>
+      {{ form.email.$error }}
+      <md-input-container class="md-block">
+        <label for="email" class="label-control">Email</label>
+        <input id="email" type="text" name="email" ng-model="form.email"  ng-pattern="/^.+@.+\..+$/" required/>
+        <div ng-messages="signup.email.$error">
+          <span class="form-error" ng-message="required">Please provide a valid email address</span>
+          <span class="form-error" ng-message="pattern">Please provide a valid email address</span>
+        </div>
+      </md-input-container>
+      <md-input-container class="md-block">
+        <label for="password" class="label-control">Password</label>
+        <input id="password" type="password" name="password" ng-model="form.password" ng-minlength="6" required/>
+        <div ng-messages="signup.password.$error">
+          <span class="form-error" ng-message="required">Please provide a password</span>
+          <span class="form-error" ng-message="minlength">Your password must be at least 6 characters long</span>
+        </div>
+      </md-input-container>
+      <md-button class="md-raised md-primary" type="submit" />Submit</md-button>
+    </form>
+  </md-card>
+</md-content>
