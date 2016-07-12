@@ -15,9 +15,9 @@
         <p>
           <strong>Current writing streak</strong>
         </p>
-        <span>{{ writingStreak }} day(s)</span>
+        <span class="stats__stat">{{ writingStreak }} day(s)</span>
       </div>
-      <div layout="row" layout-align="end end">
+      <div layout="row">
         <md-button class="md-raised" ng-href="/#/users/{{ story.storyInfo.user_id }}/story/{{ story.storyInfo.id }}">Keep Writing!</md-button>
       </div>
   </md-whiteframe>
