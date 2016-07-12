@@ -27,15 +27,9 @@ router.post('/', (req, res) => {
 
 router.put('/saveContent/:id', (req, res) => {
   const id = req.params.id;
-  console.log('saving story');
 
   res.json('ok');
-  Stories().update({ 'story_content': req.body.content }).where({ user_id: id }).then(data => {
-    console.log('saved!');
-  })
-  .catch(err => {
-    console.log(err);
-  })
+  Stories().update({ 'story_content': req.body.content }).where({ user_id: id });
 });
 
 router.get('/calendar/:id', (req, res) => {
@@ -75,12 +69,6 @@ router.get('/calendar/:id', (req, res) => {
     res.json(err);
   })
 });
-
-router.get('/calendar/story/:storyId', (req, res) => {
-  const storyId = req.params.storyId;
-
-
-})
 
 router.get('/:id', (req, res) => {
   // console.log('id: ', req.params.id);

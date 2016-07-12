@@ -76,7 +76,7 @@
             var startingPoint = moment.utc(story.storyInfo.deadlineStarts).get('date');
             var currentDate = moment.utc(story.storyInfo.deadlineEnds).get('date');
 
-            debugger;
+            // debugger;
             var obj = {};
             for (var i = 0; i < story.storyProgress.length; i++) {
               var x = moment(story.storyProgress[i].date_saved).get('date');
@@ -87,7 +87,7 @@
             var dataPoints = [];
             var lastTotal = 0;
 
-            for (var j = startingPoint; j <= currentDate; j++) {
+            for (var j = 1; j <= story.storyProgress.length; j++) {
               if (obj.hasOwnProperty(j)) {
                 lastTotal = obj[j];
                 dataPoints.push(lastTotal);
@@ -100,7 +100,7 @@
             return [dataPoints];
           }
 
-          for (var i = 1; i <= interval; i++) {
+          for (var i = 0; i <= interval; i++) {
             chartMonth.push(i.toString());
           }
 
