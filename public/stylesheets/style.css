@@ -52,6 +52,7 @@ a {
 /* alert messages */
 
 .alert.error {
-  background-color: rgba(239,154,154 ,1);
+  background-color: rgba(239,154,154,0.33);
   color: rgba(198,40,40 ,1);
+  font-weight: bold;
 }
