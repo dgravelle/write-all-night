@@ -14,7 +14,7 @@
         UserService.createUser($scope.form).then(data => {
           // data = JSON.parse(data);
           console.log('login data: ', data);
-          $location.path('/users/' + data.data.id);
+          $location.path('/users/' + data.data.id + '/new-story');
         })
         .catch(err => {
           console.log(err);
