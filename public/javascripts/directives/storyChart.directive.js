@@ -36,26 +36,24 @@
           )
           scope.writingStreak;
 
-          console.log(story.storyProgress);
-
           var makingStreak = true;
           var index = story.storyProgress.length - 1;
-          // set date in streak to current date
-          // while looping the date will be set to the last date of writing
           var lastDateInStreak = (moment().get('date') - 1);
           scope.writingStreak = 0;
 
           while (makingStreak) {
             var dateInLoop = moment(story.storyProgress[index].date_saved).get('date');
 
-            console.log(dateInLoop);
-            console.log(lastDateInStreak);
-
-            // see if date in progress array is
             if (dateInLoop >=  lastDateInStreak) {
               lastDateInStreak = dateInLoop - 1;
               scope.writingStreak += 1;
-              index--;
+
+              if (index <= 0) {
+                makingStreak = false;
+              }
+              else {
+                index--;
+              }
             }
             else {
               makingStreak = false;
@@ -75,6 +73,10 @@
           }
 
           function makePoints(progress) {
+            var startingPoint = moment.utc(story.storyInfo.deadlineStarts).get('date');
+            var currentDate = moment.utc(story.storyInfo.deadlineEnds).get('date');
+
+            debugger;
             var obj = {};
             for (var i = 0; i < story.storyProgress.length; i++) {
               var x = moment(story.storyProgress[i].date_saved).get('date');
@@ -85,9 +87,9 @@
             var dataPoints = [];
             var lastTotal = 0;
 
-            for (var i = 1; i <= moment().get('date'); i++) {
-              if (obj.hasOwnProperty(i)) {
-                lastTotal = obj[i];
+            for (var j = startingPoint; j <= currentDate; j++) {
+              if (obj.hasOwnProperty(j)) {
+                lastTotal = obj[j];
                 dataPoints.push(lastTotal);
               }
               else {

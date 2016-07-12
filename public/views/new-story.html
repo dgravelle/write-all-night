@@ -1,35 +1,39 @@
 
-<md-content layout="row" layout-align="center center">
-  <md-card layout-padding flex-gt-sm="50" flex="90">
-    <form ng-submit="addNewStory(newStory)">
+<md-content layout="row" layout-align="center center" layout-margin>
+  <md-whiteframe class="md-whiteframe-1dp" layout-padding flex-gt-sm="50" flex="90">
+    <form name="newStoryForm" ng-submit="addNewStory(newStory)">
       <h1>Start a new story!</h1>
-      <md-input-container>
-        <label for="title">Title</label>
-        <input id="title" type="text" name="title" ng-model="newStory.title">
-      </md-input-container>
       <br>
-      <md-input-container>
-        <label for="title">Deadline?</label>
+      <div class="new-story-form" layout="column" flex-gt-sm="50" flex="100">
+        <md-input-container>
+          <label for="title">Title</label>
+          <input id="title" type="text" name="title" ng-model="newStory.title">
+        </md-input-container>
+        <div class="datepicker-containter">
+          <strong>Pick a starting date</strong><br>
+          <md-datepicker
+          id="startDate"
+          ng-model="newStory.deadlineStarts"
+          required
+          ></md-datepicker>
+        </div>
         <br>
-        <md-switch ng-model="newStory.deadline">Yes</md-switch>
-      </md-input-container>
-      <div ng-show="newStory.deadline">
-        <h2>Pick a starting date</h2>
-          <label for="startDate">Start date</label>
-          <md-datepicker id="startDate" ng-model="newStory.deadlineStarts"></md-datepicker>
-          <br>
-          <h2>Pick a date to finish your story by</h2>
-          <label for="deadlineEnds">Deadline</label>
-          <md-datepicker id="deadlineEnds" ng-model="newStory.deadlineEnds"></md-datepicker>
-          <br>
+        <div class="datepicker-containter">
+          <strong>Pick a deadline</strong><br>
+        <md-datepicker
+          id="deadlineEnds"
+          ng-model="newStory.deadlineEnds"
+          required
+          ></md-datepicker>
+        </div>
+        <br>
+        <md-input-container>
+          <label for="word_goal">Word Goal</label>
+          <input id="word_goal" type="number" max="1000000" ng-model="newStory.word_goal">
+        </md-input-container>
+        <div></div>
+        <md-button class="md-primary md-raised" type="submit">Get Started!</md-button>
       </div>
-      <br>
-      <md-input-container>
-        <label for="word_goal">Word Goal</label>
-        <input id="word_goal" type="number" max="1000000" ng-model="newStory.word_goal">
-      </md-input-container>
-      <div></div>
-      <md-button class="md-primary md-raised" type="submit">Get Started!</md-button>
     </form>
-  </md-card>
+  </md-whiteframe>
 </md-content>

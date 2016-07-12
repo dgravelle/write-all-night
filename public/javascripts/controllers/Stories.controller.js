@@ -7,8 +7,16 @@
     StoriesController.$inject = ['$scope', '$window', '$location', 'StoriesService'];
 
     function StoriesController($scope, $window, $location, StoriesService) {
+      var today = new Date();
+      var nextMonth = new Date();
 
-      // $scope.newStory = {}
+      nextMonth.setMonth(nextMonth.getMonth() + 1);
+
+      $scope.newStory = {}
+      $scope.newStory.title = 'Your next writing challenge!';
+      $scope.newStory.deadlineStarts = today;
+      $scope.newStory.deadlineEnds = nextMonth;
+      $scope.newStory.word_goal = 50000;
 
       $scope.addNewStory = function(newStory) {
         console.log();
