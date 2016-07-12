@@ -12,13 +12,22 @@
 
       vm.form = {}
 
+      $scope.showError = false;
+      $scope.error;
+
       vm.login = function (user) {
         // console.log(user);
         UserService.login(user).then(user => {
           console.log(user);
-          // console.log($location);
-          // user = JSON.parse(user);
-          $location.path('/users/' + user.data.id);
+          console.log(typeof user);
+
+          if (typeof user.data === 'string') {
+            $scope.error = user.data;
+            $scope.showError = true;
+          }
+          else {
+            $location.path('/users/' + user.data.id);
+          }
         })
         .catch(err => {
           console.log(err);

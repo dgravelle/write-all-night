@@ -2,7 +2,7 @@
 
   angular
     .module('app', ['ngRoute', 'ngMaterial', 'textAngular', 'materialCalendar', 'chart.js', 'angularMoment', 'ngMessages'])
-    .config(function($routeProvider, $httpProvider, $mdThemingProvider) {
+    .config(function($routeProvider, $httpProvider, $mdThemingProvider, ChartJsProvider) {
       $routeProvider
         .when('/', {
           homePage: true,
@@ -75,7 +75,9 @@
 
         $mdThemingProvider.theme('default')
           .primaryPalette('blue')
-          .accentPalette('blue-grey');
+          .accentPalette('orange');
+
+        ChartJsProvider.setOptions({ colors : [ '#FDB45C', '#00ADF9' ] });
     })
     .run(function($rootScope, $location, $window) {
       $rootScope.$on('$routeChangeStart', function (event, next, current) {

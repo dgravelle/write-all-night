@@ -48,3 +48,10 @@ a {
   font-size: 250%;
   font-weight: bold;
 }
+
+/* alert messages */
+
+.alert.error {
+  background-color: rgba(239,154,154 ,1);
+  color: rgba(198,40,40 ,1);
+}

@@ -59,10 +59,7 @@
               makingStreak = false;
             }
           }
-
-
-
-
+          
           scope.points = makePoints(story.storyProgress);
           scope.labels = chartMonth;
           scope.option = {
@@ -73,8 +70,6 @@
           }
 
           function makePoints(progress) {
-            var startingPoint = moment.utc(story.storyInfo.deadlineStarts).get('date');
-            var currentDate = moment.utc(story.storyInfo.deadlineEnds).get('date');
 
             // debugger;
             var obj = {};
@@ -97,7 +92,15 @@
               }
             }
 
-            return [dataPoints];
+            var targetProgress = [];
+            var avgWordsPerDay = story.storyInfo.word_goal / interval;
+            var avgTotal = 0
+
+            for (var k = interval; k > 0; k--) {
+                targetProgress.push(avgTotal += avgWordsPerDay);
+            }
+            console.log(dataPoints);
+            return [dataPoints, targetProgress ];
           }
 
           for (var i = 0; i <= interval; i++) {
