@@ -72,7 +72,7 @@
 
           function makePoints(progress) {
 
-            // debugger;
+            debugger;
             var obj = {};
             for (var i = 0; i < story.storyProgress.length; i++) {
               var x = moment(story.storyProgress[i].date_saved).get('date');

@@ -1,3 +1,7 @@
+html {
+  background: white;
+}
+
 /*body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -55,4 +59,10 @@ a {
   background-color: rgba(239,154,154,0.33);
   color: rgba(198,40,40 ,1);
   font-weight: bold;
+}
+
+/* Angular Material overrides */
+
+md-content {
+  background: white;
 }

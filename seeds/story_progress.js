@@ -12,7 +12,9 @@ exports.seed = function(knex, Promise) {
       var stories = [];
       var startDates = [
         moment('2016-07-01 08:00:00'),
-        moment('2016-07-04 08:00:00'),
+        moment('2016-07-02 08:00:00'),
+        moment('2016-07-03 10:00:00'),
+        moment('2016-07-04 10:00:00'),
         moment('2016-07-05 10:00:00'),
         moment('2016-07-06 10:00:00'),
         moment('2016-07-07 10:00:00')
@@ -22,6 +24,7 @@ exports.seed = function(knex, Promise) {
         moment('2016-07-01 08:00:00'),
         moment('2016-07-02 08:00:00'),
         moment('2016-07-03 08:00:00'),
+        moment('2016-07-04 10:00:00'),
         moment('2016-07-05 10:00:00'),
         moment('2016-07-06 10:00:00'),
         moment('2016-07-07 10:00:00'),
@@ -47,7 +50,17 @@ exports.seed = function(knex, Promise) {
             stories.push(knex('story_progress').insert({
               user_id: 1,
               story_id: 1,
-              word_total: word_total += _.random(45,50),
+              word_total: word_total += 45,
+              date_saved: date.add(1, 'm').format()
+            }));
+          }
+        }
+        else if (date.get('date') > 5) {
+          for (var i = 0; i < 60; i++) {
+            stories.push(knex('story_progress').insert({
+              user_id: 1,
+              story_id: 1,
+              word_total: word_total += 0,
               date_saved: date.add(1, 'm').format()
             }));
           }
@@ -57,7 +70,7 @@ exports.seed = function(knex, Promise) {
             stories.push(knex('story_progress').insert({
               user_id: 1,
               story_id: 1,
-              word_total: word_total += _.random(15,30),
+              word_total: word_total += 20,
               date_saved: date.add(1, 'm').format()
             }));
           }
