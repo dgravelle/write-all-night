@@ -72,17 +72,17 @@
 
           function makePoints(progress) {
 
-            debugger;
-            var obj = {};
+            var obj = { 0: 0 };
             for (var i = 0; i < story.storyProgress.length; i++) {
               var x = moment(story.storyProgress[i].date_saved).get('date');
               var y = story.storyProgress[i].word_total;
               obj[x] = y;
             }
 
-            var dataPoints = [];
+            var dataPoints = [0];
             var lastTotal = 0;
 
+            debugger;
             for (var j = 1; j <= story.storyProgress.length; j++) {
               if (obj.hasOwnProperty(j)) {
                 lastTotal = obj[j];
@@ -93,7 +93,7 @@
               }
             }
 
-            var targetProgress = [];
+            var targetProgress = [0];
             var avgWordsPerDay = story.storyInfo.word_goal / interval;
             var avgTotal = 0
 
