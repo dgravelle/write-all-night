@@ -77,6 +77,7 @@
         },
 
         saveContent: function(id, content) {
+          console.log(content);
           return $http({
             method: 'put',
             url: '/stories/saveContent/' + id,

@@ -21,6 +21,9 @@
       const user_id = $window.localStorage.getItem('id');
       const save = $interval(saveProgress, 60000);
       const story = getStory.data;
+      const story_id = story.story_id;
+
+      console.log(story);
 
       $scope.title = story.title
 
@@ -51,6 +54,7 @@
         StoriesService.saveProgress(user_id, story.id, $scope.editor.scope.wordcount);
         $scope.storyContent = $scope.editor.scope.html;
         StoriesService.saveContent(user_id, { content: $scope.storyContent });
+        // console.log($scope.storyContent);
         console.log('saving');
       }
 

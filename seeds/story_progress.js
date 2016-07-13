@@ -12,6 +12,14 @@ exports.seed = function(knex, Promise) {
       var stories = [];
       var startDates = [
         moment('2016-07-01 08:00:00'),
+        moment('2016-07-04 08:00:00'),
+        moment('2016-07-05 10:00:00'),
+        moment('2016-07-06 10:00:00'),
+        moment('2016-07-07 10:00:00')
+      ]
+
+      var startDates2 = [
+        moment('2016-07-01 08:00:00'),
         moment('2016-07-02 08:00:00'),
         moment('2016-07-03 08:00:00'),
         moment('2016-07-05 10:00:00'),
@@ -19,23 +27,40 @@ exports.seed = function(knex, Promise) {
         moment('2016-07-07 10:00:00'),
         moment('2016-07-08 10:00:00'),
         moment('2016-07-09 10:00:00'),
-        moment('2016-07-10 10:00:00')
+        moment('2016-07-10 10:00:00'),
+        moment('2016-07-11 10:00:00'),
+        moment('2016-07-12 10:00:00'),
+        moment('2016-07-13 10:00:00'),
+        moment('2016-07-14 10:00:00')
       ]
 
       var word_total = 0;
 
-      startDates.map(date => {
-        makeStory(date)
+      startDates2.map(date => {
+        makeStory(date);
       })
 
       function makeStory(date) {
-        for (var i = 0; i < 60; i++) {
-          stories.push(knex('story_progress').insert({
-            user_id: 1,
-            story_id: 1,
-            word_total: word_total += _.random(25,50),
-            date_saved: date.add(1, 'm').format()
-          }));
+        console.log(date.get('date'));
+        if (date.get('date') > 7) {
+          for (var i = 0; i < 60; i++) {
+            stories.push(knex('story_progress').insert({
+              user_id: 1,
+              story_id: 1,
+              word_total: word_total += _.random(45,50),
+              date_saved: date.add(1, 'm').format()
+            }));
+          }
+        }
+        else {
+          for (var i = 0; i < 60; i++) {
+            stories.push(knex('story_progress').insert({
+              user_id: 1,
+              story_id: 1,
+              word_total: word_total += _.random(15,30),
+              date_saved: date.add(1, 'm').format()
+            }));
+          }
         }
       }
 

@@ -27,9 +27,9 @@ router.post('/', (req, res) => {
 
 router.put('/saveContent/:id', (req, res) => {
   const id = req.params.id;
-
+  console.log(req.body.content);
   res.json('ok');
-  Stories().update({ 'story_content': req.body.content }).where({ user_id: id });
+  Stories().update({ 'story_content': req.body.content }).where({ id: id });
 });
 
 router.get('/calendar/:id', (req, res) => {
