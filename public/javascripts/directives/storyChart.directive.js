@@ -82,8 +82,9 @@
             var dataPoints = [0];
             var lastTotal = 0;
 
+
             debugger;
-            for (var j = 1; j <= story.storyProgress.length; j++) {
+            for (var j = 1; j <= Object.keys(obj).length; j++) {
               if (obj.hasOwnProperty(j)) {
                 lastTotal = obj[j];
                 dataPoints.push(lastTotal);
