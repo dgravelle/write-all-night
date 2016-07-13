@@ -41,6 +41,7 @@
           var lastDateInStreak = (moment().get('date') - 1);
           scope.writingStreak = 0;
 
+          // debugger;
           while (makingStreak) {
             var dateInLoop = moment(story.storyProgress[index].date_saved).get('date');
 
@@ -59,7 +60,7 @@
               makingStreak = false;
             }
           }
-          
+
           scope.points = makePoints(story.storyProgress);
           scope.labels = chartMonth;
           scope.option = {

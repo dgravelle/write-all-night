@@ -79,7 +79,7 @@
         saveContent: function(id, content) {
           console.log(content);
           return $http({
-            method: 'put',
+            method: 'POST',
             url: '/stories/saveContent/' + id,
             headers: { 'Content-Type': 'application/json' },
             data: content

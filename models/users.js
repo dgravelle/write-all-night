@@ -43,7 +43,7 @@ Users.authenticateUser = (email, password) => {
         if (err || !res) {
           reject('Sorry, that email and password does not match');
         }
-        
+
         user = {
           id: user.id,
           email: user.email,

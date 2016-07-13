@@ -25,11 +25,17 @@ router.post('/', (req, res) => {
   })
 });
 
-router.put('/saveContent/:id', (req, res) => {
+router.post('/saveContent/:id', (req, res) => {
   const id = req.params.id;
-  console.log(req.body.content);
-  res.json('ok');
-  Stories().update({ 'story_content': req.body.content }).where({ id: id });
+  console.log(id);
+  Stories().update({ 'story_content': req.body.content }).where({ id: id }).then(data => {
+    console.log('result from update', data);
+    res.json('ok');
+  })
+  .catch(err => {
+    console.log(err);
+    res.json('error updating story');
+  });
 });
 
 router.get('/calendar/:id', (req, res) => {
