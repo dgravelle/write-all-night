@@ -4,9 +4,9 @@
 
   angular
     .module('app')
-    .directive('storyChartCOPY', storyChartCOPY)
+    .directive('storyChartCopy', storyChartCopy)
 
-    function storyChartCOPY() {
+    function storyChartCopy() {
       return {
         restrict: 'E',
         templateUrl: 'javascripts/directives/story-chart-copy.html',

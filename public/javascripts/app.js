@@ -30,7 +30,7 @@
             getUser: function (UserService, $route) {
               return UserService.getUser($route.current.params.id);
             },
-            writingProgress: function(ProgressService, $route) {
+            storyReport: function(ProgressService, $route) {
               return ProgressService.getStoryProgress($route.current.params.id);
             }
           }
