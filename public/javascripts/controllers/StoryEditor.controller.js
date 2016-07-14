@@ -53,7 +53,7 @@
         console.log('word from editor: ', $scope.editor.scope.wordcount);
         StoriesService.saveProgress(user_id, story.id, $scope.editor.scope.wordcount);
         $scope.storyContent = $scope.editor.scope.html;
-        StoriesService.saveContent(user_id, { content: $scope.storyContent });
+        StoriesService.saveContent(story.id, { content: $scope.storyContent });
         // console.log($scope.storyContent);
         console.log('saving');
       }

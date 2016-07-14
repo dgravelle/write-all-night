@@ -27,8 +27,8 @@ router.post('/', (req, res) => {
 
 router.post('/saveContent/:id', (req, res) => {
   const id = req.params.id;
-  console.log(id);
-  Stories().update({ 'story_content': req.body.content }).where({ id: id }).then(data => {
+  console.log('saving content', id);
+  Stories().where({ id: id }).update({ 'story_content': req.body.content }).then(data => {
     console.log('result from update', data);
     res.json('ok');
   })

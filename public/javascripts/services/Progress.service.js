@@ -7,11 +7,9 @@
 
     function ProgressService($http) {
       return {
-        makeMapLabels: function(storyInfo) {
+        makeMapLabels: function(storyInfo, interval) {
           var labels = [];
-          var interval = moment.duration(
-            moment(storyInfo.deadlineEnds) - moment(storyInfo.deadlineStarts)
-          ).days();
+
 
           for (var i = 0; i <= interval; i++) {
             labels.push(i.toString());
@@ -19,11 +17,9 @@
           return labels;
         },
 
-        makeProjectedPoints: function(storyInfo) {
+        makeProjectedPoints: function(storyInfo, interval) {
           var targetProgress = [0];
-          var interval = moment.duration(
-            moment(storyInfo.deadlineEnds) - moment(storyInfo.deadlineStarts)
-          ).days();
+
           var avgWordsPerDay = storyInfo.word_goal / interval;
           var avgTotal = 0
 
@@ -33,7 +29,8 @@
           return targetProgress;
         },
 
-        makeProgressPoints: function(prog) {
+        makeProgressPoints: function(prog, interval) {
+          debugger;
           var obj = { 0: 0 };
 
           for (var i = 0; i < prog.length; i++) {
@@ -42,10 +39,10 @@
             obj[x] = y;
           }
 
-          var dataPoints = [0];
+          var dataPoints = [];
           var lastTotal = 0;
 
-          for (var j = 1; j <= Object.keys(obj).length; j++) {
+          for (var j = 1; j <= interval; j++) {
             if (obj.hasOwnProperty(j)) {
               lastTotal = obj[j];
               dataPoints.push(lastTotal);
@@ -89,8 +86,13 @@
             var report = data.data;
             var progress = data.data.progress;
             var info = data.data.info;
-            var progressPoints = this.makeProgressPoints(progress);
-            var projectedPoints = this.makeProjectedPoints(info);
+            debugger;
+            var interval = moment.duration(
+              moment(info.deadlineEnds) - moment(info.deadlineStarts)
+            ).days();
+
+            var progressPoints = this.makeProgressPoints(progress, interval);
+            var projectedPoints = this.makeProjectedPoints(info, interval);
 
             report.writingStreak = this.writingStreak(progress);
             report.mapPoints = [progressPoints, projectedPoints];
@@ -109,7 +111,7 @@
               progress.length
             )
 
-            report.labels = this.makeMapLabels(info)
+            report.labels = this.makeMapLabels(info, interval)
 
             return report;
           })
