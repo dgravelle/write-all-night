@@ -18,17 +18,20 @@
       self.login = function (user) {
         var deferred = $q.defer();
 
-        console.log(user);
         return $http.post('/users/login', user).then(data => {
-          console.log(data);
 
-          $window.localStorage['id'] = data.data.id;
-          $window.localStorage['token'] = data.data.token;
-          $window.localStorage['user'] = data.data.user;
+          if (typeof data.data === 'string') {
+            return data;
+          }
+          else {
+            $window.localStorage['id'] = data.data.id;
+            $window.localStorage['token'] = data.data.token;
+            $window.localStorage['user'] = data.data.user;
 
-          deferred.resolve(data);
+            deferred.resolve(data);
 
-          return deferred.promise;
+            return deferred.promise;
+          }
         })
         .catch(err => {
           deferred.reject(err);
@@ -53,13 +56,17 @@
         var deferred = $q.defer();
 
         return $http.post('/users/signup', user).then(data => {
+          if (typeof data.data === 'string') {
+            return data;
+          }
+          else {
+            $window.localStorage['id'] = data.data.id;
+            $window.localStorage['token'] = data.data.token;
+            $window.localStorage['user'] = data.data.user;
+            deferred.resolve(data);
 
-          $window.localStorage['id'] = data.data.id;
-          $window.localStorage['token'] = data.data.token;
-          $window.localStorage['user'] = data.data.user;
-          deferred.resolve(data);
-
-          return deferred.promise;
+            return deferred.promise;
+          }
         })
         .catch(err => {
           console.log(err);

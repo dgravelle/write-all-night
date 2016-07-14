@@ -6,15 +6,21 @@
 
     function RegisterController($scope, $location, UserService) {
       $scope.hello = 'hello';
-
+      $scope.showError = false;
       $scope.form = {};
 
       $scope.handleRegistration = function() {
 
         UserService.createUser($scope.form).then(data => {
-          // data = JSON.parse(data);
           console.log('login data: ', data);
-          $location.path('/users/' + data.data.id + '/new-story');
+
+          if (typeof data.data === 'string') {
+            $scope.showError = true;
+            $scope.error = 'sorry that email is already in use';
+          }
+          else {
+            $location.path('/users/' + data.data.id + '/new-story');
+          }
         })
         .catch(err => {
           console.log(err);
