@@ -29,27 +29,29 @@
           return targetProgress;
         },
 
-        makeProgressPoints: function(prog, interval) {
-          debugger;
-          var obj = { 0: 0 };
+        makeProgressPoints: function(prog, interval, start) {
+          var obj = {};
 
           for (var i = 0; i < prog.length; i++) {
-            var x = moment(prog[i].date_saved).get('date');
+            var x = moment(prog[i].date_saved).diff(start, 'days');
             var y = prog[i].word_total;
             obj[x] = y;
           }
 
-          var dataPoints = [];
+          var dataPoints = [0];
           var lastTotal = 0;
+          var projectLength = moment().diff(start, 'days',true);
 
-          for (var j = 1; j <= interval; j++) {
+          if (projectLength < 1) {
+            projectLength = 1
+          }
+
+          debugger;
+          for (var j = 0; j < projectLength; j++) {
             if (obj.hasOwnProperty(j)) {
               lastTotal = obj[j];
-              dataPoints.push(lastTotal);
             }
-            else {
-              dataPoints.push(lastTotal);
-            }
+            dataPoints.push(lastTotal);
           }
           return dataPoints;
         },
@@ -86,12 +88,11 @@
             var report = data.data;
             var progress = data.data.progress;
             var info = data.data.info;
-            debugger;
-            var interval = moment.duration(
-              moment(info.deadlineEnds) - moment(info.deadlineStarts)
-            ).days();
+            var start = moment(info.deadlineStarts);
+            var end = moment(info.deadlineEnds);
+            var interval = end.diff(start,'days');
 
-            var progressPoints = this.makeProgressPoints(progress, interval);
+            var progressPoints = this.makeProgressPoints(progress, interval, start);
             var projectedPoints = this.makeProjectedPoints(info, interval);
 
             report.writingStreak = this.writingStreak(progress);
@@ -103,7 +104,6 @@
 
             report.daysLeft = moment().to(info.deadlineEnds, true);
 
-            // debugger;
             report.wordsPerDayLeft = (info.word_goal - report.latestTotal) / parseInt(report.daysLeft);
 
             report.wordsPerDay = (
