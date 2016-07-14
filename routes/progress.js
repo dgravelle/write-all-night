@@ -23,12 +23,33 @@ router.get('/:userId', (req, res) => {
 
       var storyInfo = data;
 
-      StoryProgress().select().where({ story_id: data.id, user_id: data.user_id }).then(progress => {
+      StoryProgress().select().where({ story_id: data.id, user_id: data.user_id }).orderBy('date_saved').then(data => {
 
-        var storyProgress = progress;
+        var results = [];
+        var lastEntry;
+        var currentDay = moment(data[0]).get('date');
+
+        for (var i = 0; i < data.length; i++) {
+
+          if (currentDay !== moment(data[i].date_saved).get('date')) {
+            currentDay = moment(data[i].date_saved).get('date');
+            lastEntry = null;
+          }
+          else {
+            if (!lastEntry) {
+              lastEntry = data[i];
+              results.push(lastEntry);
+            }
+            else if (lastEntry.date_saved < data[i].date_saved) {
+              results.splice(results.indexOf(lastEntry), 1, data[i]);
+              lastEntry = data[i];
+            }
+          }
+        }
+
         var storyReport = {
           info: storyInfo,
-          progress: progress
+          progress: results
         }
 
         res.json(storyReport);

@@ -2,18 +2,17 @@
 
   angular
     .module('app')
-    .controller('StoriesController', StoriesController);
+    .controller('NewStoryController', NewStoryController);
 
-    StoriesController.$inject = ['$scope', '$window', '$location', 'StoriesService', 'allStories'];
+    NewStoryController.$inject = ['$scope', '$window', '$location', 'StoriesService'];
 
-    function StoriesController($scope, $window, $location, StoriesService, allStories) {
+    function NewStoryController($scope, $window, $location, StoriesService) {
       var today = new Date();
       var nextMonth = new Date();
 
       nextMonth.setMonth(nextMonth.getMonth() + 1);
 
 
-      $scope.allStories = allStories;
       $scope.newStory = {}
       $scope.newStory.title = 'Your next writing challenge!';
       $scope.newStory.deadlineStarts = today;

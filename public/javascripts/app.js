@@ -30,18 +30,14 @@
             getUser: function (UserService, $route) {
               return UserService.getUser($route.current.params.id);
             },
-            allStories: function(StoriesService, $route) {
-              return StoriesService.getAllStories($route.current.params.id);
-            },
-            writingProgress: function(StoriesService, $route) {
-              console.log('route id from config: ', $route.current.params.id);
-              return StoriesService.getWritingProgress($route.current.params.id);
+            writingProgress: function(ProgressService, $route) {
+              return ProgressService.getStoryProgress($route.current.params.id);
             }
           }
         })
         .when('/users/:id/new-story', {
           templateUrl: 'views/new-story.html',
-          controller: 'StoriesController',
+          controller: 'NewStoryController',
           restricted: true
         })
         .when('/users/:id/story/:storyId', {
@@ -56,19 +52,12 @@
         })
         .when('/users/:id/stories', {
           templateUrl: 'views/stories.html',
-          controller: 'DashboardController',
+          controller: 'StoriesController',
           restricted: true,
           resolve: {
-            getUser: function (UserService, $route) {
-              return UserService.getUser($route.current.params.id);
-            },
             allStories: function(StoriesService, $route) {
               return StoriesService.getAllStories($route.current.params.id);
             },
-            writingProgress: function(StoriesService, $route) {
-              console.log('route id from config: ', $route.current.params.id);
-              return StoriesService.getWritingProgress($route.current.params.id);
-            }
           }
         });
         $httpProvider.interceptors.push('AuthInterceptor');
