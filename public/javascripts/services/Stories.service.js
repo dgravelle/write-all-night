@@ -10,9 +10,7 @@
       return {
         allStories: undefined,
         newStory: function(newStory) {
-          console.log(newStory);
           return $http.post('/stories', newStory).then(story => {
-            console.log('post return ', story);
             return story;
           })
           .catch(err => {
@@ -31,7 +29,6 @@
 
         getAllStories: function (userId) {
             return $http.get('/stories/all/' + userId).then(stories => {
-              console.log('all stories ', stories.data);
               return stories.data;
             })
             .catch(err => {
@@ -41,13 +38,11 @@
 
         getWritingProgress: function(id) {
           return $http.get('/stories/calendar/' + id).then(data => {
-            console.log(data);
             var storyData = {
               storyProgress: data.data
             }
 
             return this.getStory(data.data[0].story_id).then(data => {
-              console.log(data);
               storyData.storyInfo = data.data;
               return storyData;
             })
@@ -77,7 +72,6 @@
         },
 
         saveContent: function(id, content) {
-          console.log(content);
           return $http({
             method: 'POST',
             url: '/stories/saveContent/' + id,

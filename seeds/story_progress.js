@@ -41,7 +41,6 @@ exports.seed = function(knex, Promise) {
       })
 
       function makeStory(date) {
-        console.log(date.get('date'));
         if (date.get('date') > 7) {
           for (var i = 0; i < 60; i++) {
             stories.push(knex('story_progress').insert({

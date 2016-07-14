@@ -18,8 +18,6 @@
       vm.login = function (user) {
         // console.log(user);
         UserService.login(user).then(user => {
-          console.log(user);
-          console.log(typeof user);
 
           if (typeof user.data === 'string') {
             $scope.error = user.data;

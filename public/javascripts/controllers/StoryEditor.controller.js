@@ -23,8 +23,6 @@
       const story = getStory.data;
       const story_id = story.story_id;
 
-      console.log(story);
-
       $scope.title = story.title
 
       $scope.storyContent;
@@ -44,18 +42,14 @@
 
       function getEditor() {
         $scope.editor = textAngularManager.retrieveEditor('myEditorName');
-        // $scope.editor.scope.html = story.story_content;
         $scope.myEditor = $interpolate(story.story_content)($scope);
 
       }
 
       function saveProgress() {
-        console.log('word from editor: ', $scope.editor.scope.wordcount);
         StoriesService.saveProgress(user_id, story.id, $scope.editor.scope.wordcount);
         $scope.storyContent = $scope.editor.scope.html;
         StoriesService.saveContent(story.id, { content: $scope.storyContent });
-        // console.log($scope.storyContent);
-        console.log('saving');
       }
 
       $scope.$on('$destroy', () => {

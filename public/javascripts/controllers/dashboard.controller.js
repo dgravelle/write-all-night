@@ -7,10 +7,7 @@
     DashboardController.$inject = ['$scope', '$timeout', '$mdSidenav', 'UserService', 'getUser', 'storyReport'];
 
     function DashboardController($scope, $timeout, $mdSidenav, UserService, getUser, storyReport) {
-      // side nav
 
-      console.log(storyReport);
-      // story chart
       $scope.currentUser = getUser;
       $scope.storyReport = storyReport;
       $scope.info = storyReport.info;
@@ -23,6 +20,5 @@
       $scope.wordsPerDayLeft = storyReport.wordsPerDayLeft;
       $scope.daysLeft = storyReport.daysLeft;
 
-      // writing progress
     }
 })()

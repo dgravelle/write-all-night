@@ -20,7 +20,6 @@
       $scope.newStory.word_goal = 50000;
 
       $scope.addNewStory = function(newStory) {
-        console.log();
         if (!newStory) {
           return 'yo finish filling out the form';
         }

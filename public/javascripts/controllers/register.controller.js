@@ -12,8 +12,6 @@
       $scope.handleRegistration = function() {
 
         UserService.createUser($scope.form).then(data => {
-          console.log('login data: ', data);
-
           if (typeof data.data === 'string') {
             $scope.showError = true;
             $scope.error = 'sorry that email is already in use';
