@@ -32,6 +32,7 @@
         makeProgressPoints: function(prog, interval, start) {
           var obj = {};
 
+          debugger;
           for (var i = 0; i < prog.length; i++) {
             var x = moment(prog[i].date_saved).diff(start, 'days');
             var y = prog[i].word_total;
@@ -45,6 +46,7 @@
           if (projectLength < 1) {
             projectLength = 1
           }
+
 
           for (var j = 0; j < projectLength; j++) {
             if (obj.hasOwnProperty(j)) {

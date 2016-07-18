@@ -11,27 +11,27 @@ exports.seed = function(knex, Promise) {
 
       var stories = [];
       var startDates = [
-        moment('2016-07-01 08:00:00'),
-        moment('2016-07-02 08:00:00'),
-        moment('2016-07-03 10:00:00'),
-        moment('2016-07-04 10:00:00'),
-        moment('2016-07-05 10:00:00'),
-        moment('2016-07-06 10:00:00')
+        Date(2016,07,01,08,00,00),
+        Date(2016,07,02,08,00,00),
+        Date(2016,07,03,10,00,00),
+        Date(2016,07,04,10,00,00),
+        Date(2016,07,05,10,00,00),
+        Date(2016,07,06,10,00,00)
       ]
 
       var startDates2 = [
-        moment('2016-07-01 08:00:00'),
-        moment('2016-07-02 08:00:00'),
-        moment('2016-07-03 08:00:00'),
-        moment('2016-07-04 10:00:00'),
-        moment('2016-07-05 10:00:00'),
-        moment('2016-07-07 10:00:00'),
-        moment('2016-07-08 10:00:00'),
-        moment('2016-07-09 10:00:00'),
-        moment('2016-07-10 10:00:00'),
-        moment('2016-07-11 10:00:00'),
-        moment('2016-07-12 10:00:00'),
-        moment('2016-07-13 10:00:00')
+        Date('2016-07-01 08:00:00'),
+        Date('2016-07-02 08:00:00'),
+        Date('2016-07-03 08:00:00'),
+        Date('2016-07-04 10:00:00'),
+        Date('2016-07-05 10:00:00'),
+        Date('2016-07-07 10:00:00'),
+        Date('2016-07-08 10:00:00'),
+        Date('2016-07-09 10:00:00'),
+        Date('2016-07-10 10:00:00'),
+        Date('2016-07-11 10:00:00'),
+        Date('2016-07-12 10:00:00'),
+        Date('2016-07-13 10:00:00')
       ]
 
       var word_total = 0;
@@ -41,23 +41,23 @@ exports.seed = function(knex, Promise) {
       })
 
       function makeStory(date) {
-        if (date.get('date') > 7) {
+        if (moment(date, 'String').get('date') > 7) {
           for (var i = 0; i < 60; i++) {
             stories.push(knex('story_progress').insert({
               user_id: 1,
               story_id: 1,
               word_total: word_total += 45,
-              date_saved: date.add(1, 'm').format()
+              date_saved: moment(date, 'String').add(1, 'm').format()
             }));
           }
         }
-        else if (date.get('date') > 5) {
+        else if (moment(date, 'String').get('date') > 5) {
           for (var i = 0; i < 60; i++) {
             stories.push(knex('story_progress').insert({
               user_id: 1,
               story_id: 1,
               word_total: word_total += 0,
-              date_saved: date.add(1, 'm').format()
+              date_saved: moment(date, 'String').add(1, 'm').format()
             }));
           }
         }
@@ -67,7 +67,7 @@ exports.seed = function(knex, Promise) {
               user_id: 1,
               story_id: 1,
               word_total: word_total += 20,
-              date_saved: date.add(1, 'm').format()
+              date_saved: moment(date, 'String').add(1, 'm').format()
             }));
           }
         }
