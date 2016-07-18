@@ -45,7 +45,7 @@
           if (projectLength < 1) {
             projectLength = 1
           }
-          
+
           for (var j = 0; j < projectLength; j++) {
             if (obj.hasOwnProperty(j)) {
               lastTotal = obj[j];

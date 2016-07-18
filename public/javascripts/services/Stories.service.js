@@ -36,26 +36,6 @@
             });
         },
 
-        getWritingProgress: function(id) {
-          return $http.get('/stories/calendar/' + id).then(data => {
-            var storyData = {
-              storyProgress: data.data
-            }
-
-            return this.getStory(data.data[0].story_id).then(data => {
-              storyData.storyInfo = data.data;
-              return storyData;
-            })
-            .catch(err => {
-              console.log(err);
-              return err;
-            })
-          })
-          .catch(err => {
-            return err;
-          })
-        },
-
         saveProgress: function(user_id, storyId, wordTotal) {
           var story = {
             user_id: user_id,
