@@ -5,8 +5,6 @@
       <h2 class="latestWriting__h2">Your latest writing</h2>
     </div>
   </md-toolbar>
-
-
   <div layout="row" class="story-progress" layout-xs="column">
     <md-whiteframe class="md-whiteframe-1dp"  flex="33" layout="column" layout-margin layout-padding>
         <h3>Title: {{ info.title }}</h3>
@@ -34,6 +32,8 @@
         class="chart chart-line"
         chart-data="points"
         chart-labels="labels"
+        chart-colours="['#DDDDDD','#2196f3']"
+
         ></canvas>
     </div>
     </md-whiteframe>

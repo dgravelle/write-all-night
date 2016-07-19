@@ -38,7 +38,6 @@
             obj[x] = y;
           }
 
-          debugger;
           var dataPoints = [0];
           var lastTotal = 0;
           var projectLength = moment().diff(start, 'days');
@@ -97,15 +96,15 @@
             var projectedPoints = this.makeProjectedPoints(info, interval);
 
             report.writingStreak = this.writingStreak(progress);
-            report.mapPoints = [progressPoints, projectedPoints];
+            report.mapPoints = [projectedPoints,progressPoints];
 
             report.latestTotal =  progress[progress.length -1].word_total;
 
             report.percentComplete = (report.latestTotal / info.word_goal) * 100;
 
-            report.daysLeft = moment().to(info.deadlineEnds, true);
-
-            report.wordsPerDayLeft = (info.word_goal - report.latestTotal) / parseInt(report.daysLeft);
+            report.daysLeft = interval;
+            // debugger;
+            report.wordsPerDayLeft = Math.round((info.word_goal - report.latestTotal) / interval);
 
             report.wordsPerDay = (
               progress[progress.length - 1 ].word_total /

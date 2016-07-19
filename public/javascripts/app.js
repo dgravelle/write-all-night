@@ -66,7 +66,6 @@
           .primaryPalette('blue')
           .accentPalette('orange');
 
-        ChartJsProvider.setOptions({ colors : [ '#FDB45C', '#00ADF9' ] });
     })
     .run(function($rootScope, $location, $window) {
       $rootScope.$on('$routeChangeStart', function (event, next, current) {
