@@ -32,16 +32,16 @@
         makeProgressPoints: function(prog, interval, start) {
           var obj = {};
 
-          debugger;
           for (var i = 0; i < prog.length; i++) {
             var x = moment(prog[i].date_saved).diff(start, 'days');
             var y = prog[i].word_total;
             obj[x] = y;
           }
 
+          debugger;
           var dataPoints = [0];
           var lastTotal = 0;
-          var projectLength = moment().diff(start, 'days',true);
+          var projectLength = moment().diff(start, 'days');
 
           if (projectLength < 1) {
             projectLength = 1

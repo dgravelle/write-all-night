@@ -20,18 +20,18 @@ exports.seed = function(knex, Promise) {
       ]
 
       var startDates2 = [
-        Date('2016-07-01 08:00:00'),
-        Date('2016-07-02 08:00:00'),
-        Date('2016-07-03 08:00:00'),
-        Date('2016-07-04 10:00:00'),
-        Date('2016-07-05 10:00:00'),
-        Date('2016-07-07 10:00:00'),
-        Date('2016-07-08 10:00:00'),
-        Date('2016-07-09 10:00:00'),
-        Date('2016-07-10 10:00:00'),
-        Date('2016-07-11 10:00:00'),
-        Date('2016-07-12 10:00:00'),
-        Date('2016-07-13 10:00:00')
+        new Date(Date.UTC(2016,06,01,08)),
+        new Date(Date.UTC(2016,06,02,08)),
+        new Date(Date.UTC(2016,06,03,08)),
+        new Date(Date.UTC(2016,06,04,08)),
+        new Date(Date.UTC(2016,06,07,08)),
+        new Date(Date.UTC(2016,06,08,08)),
+        new Date(Date.UTC(2016,06,09,08)),
+        new Date(Date.UTC(2016,06,10,08)),
+        new Date(Date.UTC(2016,06,11,08)),
+        new Date(Date.UTC(2016,06,12,08)),
+        new Date(Date.UTC(2016,06,13,08)),
+        new Date(Date.UTC(2016,06,14,08))
       ]
 
       var word_total = 0;

@@ -13,8 +13,8 @@ exports.seed = function(knex, Promise) {
           story_content: null,
           word_goal: 50000,
           deadline: true,
-          deadlineStarts: new Date('2016-07-01'),
-          deadlineEnds: new Date('2016-07-31')
+          deadlineStarts: new Date(Date.UTC(2016,06,01,08)),
+          deadlineEnds: new Date(Date.UTC(2016,06,31,08))
         })
       ]);
     });
