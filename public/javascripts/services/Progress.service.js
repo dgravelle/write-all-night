@@ -7,6 +7,43 @@
 
     function ProgressService($http) {
       return {
+        getStoryProgress: function(userId) {
+          return $http.get('/progress/' + userId).then(data => {
+            var report = data.data;
+            var progress = report.progress;
+            var info = report.info;
+            var start = moment(info.deadlineStarts);
+            var end = moment(info.deadlineEnds);
+            var interval = end.diff(start,'days');
+
+            var progressPoints = this.makeProgressPoints(progress, interval, start);
+            var projectedPoints = this.makeProjectedPoints(info, interval);
+
+            report.writingStreak = this.writingStreak(progress);
+            report.mapPoints = [projectedPoints,progressPoints];
+
+            report.latestTotal =  progress[progress.length -1].word_total;
+
+            report.percentComplete = (report.latestTotal / info.word_goal) * 100;
+
+            report.daysLeft = interval;
+            // debugger;
+            report.wordsPerDayLeft = Math.round((info.word_goal - report.latestTotal) / interval);
+
+            report.wordsPerDay = (
+              progress[progress.length - 1].word_total /
+              progress.length
+            )
+
+            report.labels = this.makeMapLabels(info, interval)
+
+            return report;
+          })
+          .catch(err => {
+            console.error(err);
+          })
+        },
+
         makeMapLabels: function(storyInfo, interval) {
           var labels = [];
 
@@ -81,43 +118,6 @@
             }
           }
           return writingStreak;
-        },
-
-        getStoryProgress: function(userId) {
-          return $http.get('/progress/' + userId).then(data => {
-            var report = data.data;
-            var progress = data.data.progress;
-            var info = data.data.info;
-            var start = moment(info.deadlineStarts);
-            var end = moment(info.deadlineEnds);
-            var interval = end.diff(start,'days');
-
-            var progressPoints = this.makeProgressPoints(progress, interval, start);
-            var projectedPoints = this.makeProjectedPoints(info, interval);
-
-            report.writingStreak = this.writingStreak(progress);
-            report.mapPoints = [projectedPoints,progressPoints];
-
-            report.latestTotal =  progress[progress.length -1].word_total;
-
-            report.percentComplete = (report.latestTotal / info.word_goal) * 100;
-
-            report.daysLeft = interval;
-            // debugger;
-            report.wordsPerDayLeft = Math.round((info.word_goal - report.latestTotal) / interval);
-
-            report.wordsPerDay = (
-              progress[progress.length - 1 ].word_total /
-              progress.length
-            )
-
-            report.labels = this.makeMapLabels(info, interval)
-
-            return report;
-          })
-          .catch(err => {
-            console.error(err);
-          })
         }
       }
     }
