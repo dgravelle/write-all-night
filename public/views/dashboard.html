@@ -10,10 +10,10 @@
         <h3>Title: {{ info.title }}</h3>
         <div>
           <p>
-            <strong>Started on: </strong>{{ info.deadlineStarts | date : 'MM dd yyyy'}}
+            <strong>Started on: </strong>{{ info.deadlineStarts | date : 'fullDate'}}
           </p>
           <p>
-            <strong>Deadline: </strong>{{ info.deadlineEnds | date : 'MM dd yyyy'}}
+            <strong>Deadline: </strong>{{ info.deadlineEnds | date : 'fullDate'}}
           </p>
         </div>
         <div>
@@ -33,7 +33,6 @@
         chart-data="points"
         chart-labels="labels"
         chart-colors="['#DDDDDD','#2196f3']"
-
         ></canvas>
     </div>
     </md-whiteframe>
