@@ -16,7 +16,6 @@ router.get('/:userId', (req, res) => {
   const id = req.params.userId;
 
   StoryProgress().select().where('user_id', id).orderBy('date_saved', 'desc').first().then(data => {
-    console.log(data);
 
     Stories().select().where({ id: data.story_id }).first().then(data => {
       // console.log('story: ', data);
@@ -58,7 +57,7 @@ router.get('/:userId', (req, res) => {
     })
   })
   .catch(err => {
-    console.log(err);
+    res.json(err);
   })
 })
 
