@@ -1,4 +1,4 @@
-
+const story = require('../samples/moby.js');
 
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
@@ -10,11 +10,11 @@ exports.seed = function(knex, Promise) {
           created_at: new Date(),
           user_id: 1,
           title: 'My Epic Story',
-          story_content: null,
+          story_content: story,
           word_goal: 50000,
           deadline: true,
-          deadlineStarts: new Date(Date.UTC(2016,06,01,08)),
-          deadlineEnds: new Date(Date.UTC(2016,06,31,08))
+          deadlineStarts: new Date(Date.UTC(2016,07,01,08)),
+          deadlineEnds: new Date(Date.UTC(2016,07,31,08))
         })
       ]);
     });

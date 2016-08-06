@@ -43,8 +43,8 @@
       function getEditor() {
         $scope.editor = textAngularManager.retrieveEditor('myEditorName');
         $scope.myEditor = $interpolate(story.story_content)($scope);
-
       }
+
 
       function saveProgress() {
         StoriesService.saveProgress(user_id, story.id, $scope.editor.scope.wordcount);
