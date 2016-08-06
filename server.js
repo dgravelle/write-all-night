@@ -34,7 +34,9 @@ app.use(bodyParser.json({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/scripts', express.static(path.join(__dirname, 'node_modules')));
+app.use('/scripts', express.static(path.join(__dirname + '/node_modules')));
+
+console.log(path.join(__dirname + '/node_modules'));
 
 app.set('secret', config.secret);
 

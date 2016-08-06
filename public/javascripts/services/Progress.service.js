@@ -15,7 +15,7 @@
             var start = moment(info.deadlineStarts);
             var end = moment(info.deadlineEnds);
             var interval = end.diff(start,'days');
-
+            // debugger;
             var progressPoints = this.makeProgressPoints(progress, interval, start);
             var projectedPoints = this.makeProjectedPoints(info, interval);
 
@@ -26,8 +26,12 @@
 
             report.percentComplete = (report.latestTotal / info.word_goal) * 100;
 
-            report.daysLeft = interval;
-            // debugger;
+            report.daysLeft = end.diff(moment(), 'days');
+
+            if (report.daysLeft < 0) {
+              report.daysLeft = 0;
+            }
+            
             report.wordsPerDayLeft = Math.round((info.word_goal - report.latestTotal) / interval);
 
             report.wordsPerDay = (
