@@ -6,7 +6,7 @@
       <md-input-container class="md-block">
         <label for="email" class="label-control">Email</label>
         <input id="email" type="text" name="email" ng-model="form.email"  ng-pattern="/^.+@.+\..+$/" required/>
-        <div ng-messages="signup.email.$error">
+        <div ng-messages="signup.email.$error" ng-if="signup.email.$touched">
           <span class="form-error" ng-message="required">Please provide a valid email address</span>
           <span class="form-error" ng-message="pattern">Please provide a valid email address</span>
         </div>
@@ -14,7 +14,7 @@
       <md-input-container class="md-block">
         <label for="password" class="label-control">Password</label>
         <input id="password" type="password" name="password" ng-model="form.password" ng-minlength="6" required/>
-        <div ng-messages="signup.password.$error">
+        <div ng-messages="signup.password.$error" ng-if="signup.password.$touched">
           <span class="form-error" ng-message="required">Please provide a password</span>
           <span class="form-error" ng-message="minlength">Your password must be at least 6 characters long</span>
         </div>

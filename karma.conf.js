@@ -15,6 +15,26 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      './node_modules/angular/angular.js',
+      './node_modules/angular-aria/angular-aria.js',
+      './node_modules/angular-animate/angular-animate.js',
+      './node_modules/angular-route/angular-route.js',
+      './node_modules/angular-mocks/angular-mocks.js',
+      './node_modules/moment/moment.js',
+      './node_modules/angular-material/angular-material.js',
+      './node_modules/textAngular/dist/textAngular-rangy.js',
+      './node_modules/textAngular/dist/textAngular-sanitize.js',
+      './node_modules/textAngular/dist/textAngular.js',
+      './node_modules/textAngular/dist/textAngularSetup.js',
+      './node_modules/chart.js/dist/Chart.min.js',
+      './node_modules/angular-chart.js/dist/angular-chart.js',
+      './node_modules/angular-moment/angular-moment.js',
+      './node_modules/angular-messages/angular-messages.js',
+      './public/javascripts/app.js',
+      // './public/javascripts/services/Progress.service.js',
+      // './public/javascripts/services/Progress.service.spec.js',
+      './public/javascripts/controllers/Login.controller.js',
+      './public/javascripts/controllers/Login.controller.spec.js'
     ],
 
 
@@ -59,7 +79,7 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
+    singleRun: true,
 
     // Concurrency level
     // how many browser should be started simultaneous

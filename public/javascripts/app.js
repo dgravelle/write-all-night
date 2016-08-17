@@ -1,7 +1,7 @@
 (function () {
 
   angular
-    .module('app', ['ngRoute', 'ngMaterial', 'textAngular', 'materialCalendar', 'chart.js', 'angularMoment', 'ngMessages'])
+    .module('app', ['ngRoute', 'ngMaterial', 'textAngular', 'chart.js', 'angularMoment', 'ngMessages'])
     .config(function($routeProvider, $httpProvider, $mdThemingProvider, ChartJsProvider) {
       $routeProvider
         .when('/', {
