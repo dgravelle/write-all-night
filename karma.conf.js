@@ -22,7 +22,7 @@ module.exports = function(config) {
       './node_modules/angular-mocks/angular-mocks.js',
       './node_modules/moment/moment.js',
       './node_modules/angular-material/angular-material.js',
-      './node_modules/textAngular/dist/textAngular-rangy.js',
+      './node_modules/textAngular/dist/textAngular-rangy.min.js',
       './node_modules/textAngular/dist/textAngular-sanitize.js',
       './node_modules/textAngular/dist/textAngular.js',
       './node_modules/textAngular/dist/textAngularSetup.js',
@@ -31,10 +31,9 @@ module.exports = function(config) {
       './node_modules/angular-moment/angular-moment.js',
       './node_modules/angular-messages/angular-messages.js',
       './public/javascripts/app.js',
-      // './public/javascripts/services/Progress.service.js',
-      // './public/javascripts/services/Progress.service.spec.js',
-      './public/javascripts/controllers/Login.controller.js',
-      './public/javascripts/controllers/Login.controller.spec.js'
+      './public/javascripts/services/*',
+      './public/javascripts/controllers/*',
+      './public/javascripts/tests/*'
     ],
 
 

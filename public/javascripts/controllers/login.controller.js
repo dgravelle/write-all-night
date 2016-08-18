@@ -8,7 +8,7 @@
 
     function LoginController($scope, $location, UserService) {
 
-      const vm = this;
+      var vm = this;
 
       vm.form = {}
 
