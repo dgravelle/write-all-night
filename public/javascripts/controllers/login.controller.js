@@ -16,7 +16,6 @@
       $scope.error;
 
       vm.login = function (user) {
-
         UserService.login(user).then(user => {
 
           if (typeof user.data === 'string') {

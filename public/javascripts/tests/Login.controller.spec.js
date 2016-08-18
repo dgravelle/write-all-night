@@ -28,4 +28,8 @@ describe('Login Controller', () => {
         expect(loginController).toBeDefined();
     });
 
+    it('should be have a login function', () => {
+        expect(loginController.login).toBeDefined();
+    });
+
 });
