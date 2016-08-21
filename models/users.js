@@ -6,7 +6,6 @@ const knex = require('../db/knex');
 const Users = knex('users');
 
 Users.createUser = (data) => {
-  console.log(data);
   return new Promise((resolve, reject) => {
     bcrypt.hash(data.password, saltRounds, function(err, hash) {
       if (err) {
@@ -17,11 +16,15 @@ Users.createUser = (data) => {
       delete data.password;
 
       Users.insert(data, '*').then(data => {
+        data[0].success = 'true'
+        delete data[0].pass_hash;
+
         console.log(`user created `, data);
         resolve(data[0]);
       })
       .catch(err => {
         console.log('error in user model: ', err);
+        err.success = false;
         reject(err);
       });
     });
@@ -29,13 +32,9 @@ Users.createUser = (data) => {
 }
 
 Users.authenticateUser = (email, password) => {
-  console.log('authenticating');
-  console.log('email: ', email);
-  console.log('password: ', password);
-
   return new Promise((resolve, reject) => {
     Users.select().where({ email: email }).first().then((user) => {
-      console.log(user);
+
       if (!user) {
         reject('Sorry, that email and password does not match');
       }
@@ -49,6 +48,7 @@ Users.authenticateUser = (email, password) => {
           email: user.email,
           name: user.name
         }
+
         resolve(user);
       });
     });

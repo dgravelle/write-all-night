@@ -30,6 +30,8 @@
           console.log(err);
         })
       }
+
+      return vm;
     }
 
 })()

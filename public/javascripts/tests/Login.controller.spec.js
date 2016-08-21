@@ -8,18 +8,14 @@ describe('Login Controller', () => {
         loginController;
 
 
-    beforeEach(inject((_$controller_, $injector, _UserService_) => {
+    beforeEach(inject((_$controller_, _UserService_) => {
         controller = _$controller_;
         userService = _UserService_;
 
-        createController = () => {
-            return controller('LoginController', {
-                $scope: {},
-                UserService: userService
-            });
-        }
-
-        loginController = createController();
+        loginController = controller('LoginController', {
+              $scope: {},
+              UserService: userService
+          });
     }));
 
 

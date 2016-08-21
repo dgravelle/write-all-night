@@ -2,16 +2,18 @@
 
   angular
     .module('app')
-    .controller('RegisterController', RegisterController);
+    .controller('SignupController', SignupController);
 
-    function RegisterController($scope, $location, UserService) {
-      $scope.hello = 'hello';
+    function SignupController($scope, $location, UserService) {
+      var vm = this;
+      vm.form = {};
+
       $scope.showError = false;
-      $scope.form = {};
+      $scope.error;
 
-      $scope.handleRegistration = function() {
-
-        UserService.createUser($scope.form).then(data => {
+      vm.handleRegistration = function(user) {
+        console.log(user);
+        UserService.createUser(user).then(data => {
           if (typeof data.data === 'string') {
             $scope.showError = true;
             $scope.error = 'sorry that email is already in use';
@@ -23,8 +25,10 @@
         .catch(err => {
           console.log(err);
           $location.path('/');
-        })
+        });
       }
+
+      return vm;
     }
 
-})()
+})();

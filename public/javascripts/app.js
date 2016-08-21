@@ -20,7 +20,8 @@
           restricted: false,
           notForLoggedIn: true,
           templateUrl: 'views/signup.html',
-          controller: 'RegisterController'
+          controller: 'SignupController',
+          controllerAs: 'signupCtrl'
         })
         .when('/users/:id', {
           templateUrl: 'views/dashboard.html',

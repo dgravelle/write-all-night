@@ -1,6 +1,6 @@
 <md-content layout="row" layout-align="center">
   <md-card flex="50" layout-padding>
-    <form name="signup" ng-submit="handleRegistration()">
+    <form name="signup" ng-submit="signupCtrl.handleRegistration(form)">
       <h1>Sign up to write all night!</h1>
       {{ form.email.$error }}
       <md-input-container class="md-block">
