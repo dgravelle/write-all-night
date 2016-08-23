@@ -12,14 +12,17 @@
       $scope.error;
 
       vm.handleRegistration = function(user) {
-        console.log(user);
-        UserService.createUser(user).then(data => {
-          if (typeof data.data === 'string') {
+        return UserService.createUser(user).then(data => {
+          if (data.status > 400) {
             $scope.showError = true;
-            $scope.error = 'sorry that email is already in use';
+            $scope.error = 'Sorry, that email is already in use';
+
+            return $scope.error;
           }
           else {
             $location.path('/users/' + data.data.id + '/new-story');
+
+            return 'success';
           }
         })
         .catch(err => {

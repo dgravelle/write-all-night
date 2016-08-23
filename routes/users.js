@@ -37,6 +37,11 @@ router.get('/', (req, res, next) => {
 
 router.post('/signup', (req, res) => {
   Users.createUser(req.body).then(data => {
+    console.log(data);
+    if(!data.success) {
+      res.sendStatus(409);
+      res.json({ message: err });
+    }
     var userToken = makeJWT(data);
 
     var userInfo = {
@@ -44,11 +49,13 @@ router.post('/signup', (req, res) => {
       token: userToken,
       user: data.email
     }
+
+    console.log(userInfo);
+    
     res.json(userInfo);
   })
   .catch(err => {
-      res.sendStatus(409);
-      res.json({ message: err })
+    res.json({ message: err })
   });
 });
 
@@ -59,8 +66,9 @@ router.get('/:id', tokenCheck, (req, res, next) => {
   })
   .catch(err => {
     res.json(err)
-  })
-})
+  });
+
+});
 
 router.post('/login', (req, res) => {
 
@@ -78,7 +86,8 @@ router.post('/login', (req, res) => {
   })
   .catch(err => {
     res.json(err);
-  })
+  });
+
 });
 
 

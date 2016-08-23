@@ -21,9 +21,13 @@
           if (typeof user.data === 'string') {
             $scope.error = user.data;
             $scope.showError = true;
+
+            return user.data;
           }
           else {
             $location.path('/users/' + user.data.id);
+
+            return 'success';
           }
         })
         .catch(err => {

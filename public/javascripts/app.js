@@ -14,14 +14,14 @@
           restricted: false,
           notForLoggedIn: true,
           controller: 'LoginController',
-          controllerAs: 'loginCtrl'
+          controllerAs: 'vm'
         })
         .when('/signup', {
           restricted: false,
           notForLoggedIn: true,
           templateUrl: 'views/signup.html',
           controller: 'SignupController',
-          controllerAs: 'signupCtrl'
+          controllerAs: 'vm'
         })
         .when('/users/:id', {
           templateUrl: 'views/dashboard.html',

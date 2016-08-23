@@ -23,8 +23,8 @@ Users.createUser = (data) => {
         resolve(data[0]);
       })
       .catch(err => {
-        console.log('error in user model: ', err);
         err.success = false;
+        console.log('error in user model: ', err);
         reject(err);
       });
     });

@@ -19,9 +19,9 @@
         var deferred = $q.defer();
 
         return $http.post('/users/login', user).then(data => {
-
-          if (typeof data.data === 'string') {
-            return data;
+          console.log(data);
+          if (!data.success) {
+            deferred.reject(data);
           }
           else {
             $window.localStorage['id'] = data.data.id;
