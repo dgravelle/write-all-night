@@ -17,9 +17,9 @@
           controllerAs: 'vm'
         })
         .when('/signup', {
-          restricted: false,
           notForLoggedIn: true,
           templateUrl: 'views/signup.html',
+          restricted: false,
           controller: 'SignupController',
           controllerAs: 'vm'
         })

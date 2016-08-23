@@ -33,7 +33,8 @@ module.exports = function(config) {
       './public/javascripts/app.js',
       './public/javascripts/services/*',
       './public/javascripts/controllers/*',
-      './public/javascripts/tests/*'
+      './public/javascripts/tests/controllers/*',
+      './public/javascripts/tests/services/*'
     ],
 
 

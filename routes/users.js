@@ -51,7 +51,7 @@ router.post('/signup', (req, res) => {
     }
 
     console.log(userInfo);
-    
+
     res.json(userInfo);
   })
   .catch(err => {
@@ -73,7 +73,7 @@ router.get('/:id', tokenCheck, (req, res, next) => {
 router.post('/login', (req, res) => {
 
   Users.authenticateUser(req.body.email, req.body.password).then(data => {
-
+    
     var userToken = makeJWT(data);
 
     var userInfo = {
@@ -85,7 +85,8 @@ router.post('/login', (req, res) => {
     res.json(userInfo);
   })
   .catch(err => {
-    res.json(err);
+    res.status(400)
+    res.json(err)
   });
 
 });

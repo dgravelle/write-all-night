@@ -9,7 +9,5 @@
     function StoriesController($scope, $window, $location, StoriesService, allStories) {
       $scope.allStories = allStories;
       $scope.user_id = $window.localStorage.getItem('id');
-
-
     }
 })()

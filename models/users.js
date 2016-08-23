@@ -36,11 +36,12 @@ Users.authenticateUser = (email, password) => {
     Users.select().where({ email: email }).first().then((user) => {
 
       if (!user) {
-        reject('Sorry, that email and password does not match');
+        return reject('Sorry, that email and password does not match');
       }
+
       bcrypt.compare(password, user.pass_hash, (err, res) => {
         if (err || !res) {
-          reject('Sorry, that email and password does not match');
+          return reject('Sorry, that email and password does not match');
         }
 
         user = {
@@ -49,7 +50,7 @@ Users.authenticateUser = (email, password) => {
           name: user.name
         }
 
-        resolve(user);
+        return resolve(user);
       });
     });
   });

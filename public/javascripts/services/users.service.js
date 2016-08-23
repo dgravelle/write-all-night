@@ -12,7 +12,7 @@
       const self = this;
 
       self.logOut = function() {
-        return localStorage.clear();
+        localStorage.clear();
       }
 
       self.login = function (user) {
@@ -20,8 +20,10 @@
 
         return $http.post('/users/login', user).then(data => {
           console.log(data);
-          if (!data.success) {
+          if (data.status >= 400) {
             deferred.reject(data);
+
+            return deferred.promise;
           }
           else {
             $window.localStorage['id'] = data.data.id;

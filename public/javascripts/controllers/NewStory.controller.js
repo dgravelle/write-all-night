@@ -12,7 +12,6 @@
 
       nextMonth.setMonth(nextMonth.getMonth() + 1);
 
-
       $scope.newStory = {}
       $scope.newStory.title = 'Your next writing challenge!';
       $scope.newStory.deadlineStarts = today;
