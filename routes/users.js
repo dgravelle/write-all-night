@@ -55,6 +55,8 @@ router.post('/signup', (req, res) => {
     res.json(userInfo);
   })
   .catch(err => {
+    console.log(err);
+    res.sendStatus(409);
     res.json({ message: err })
   });
 });
@@ -73,7 +75,7 @@ router.get('/:id', tokenCheck, (req, res, next) => {
 router.post('/login', (req, res) => {
 
   Users.authenticateUser(req.body.email, req.body.password).then(data => {
-    
+
     var userToken = makeJWT(data);
 
     var userInfo = {

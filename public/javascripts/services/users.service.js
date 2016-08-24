@@ -19,7 +19,7 @@
         var deferred = $q.defer();
 
         return $http.post('/users/login', user).then(data => {
-          console.log(data);
+
           if (data.status >= 400) {
             deferred.reject(data);
 
@@ -34,6 +34,7 @@
 
             return deferred.promise;
           }
+
         })
         .catch(err => {
           deferred.reject(err);
@@ -58,8 +59,11 @@
         var deferred = $q.defer();
 
         return $http.post('/users/signup', user).then(data => {
-          if (typeof data.data === 'string') {
-            return data;
+          console.log(data);
+          if (data.status >= 400) {
+            deferred.reject(data);
+
+            return deferred.promise;
           }
           else {
             $window.localStorage['id'] = data.data.id;
