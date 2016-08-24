@@ -26,10 +26,10 @@
           }
         })
         .catch(err => {
-          console.log(err);
-          // $location.path('/');
+
           $scope.showError = true;
           $scope.error = 'Sorry, that email is already in use';
+          return 'failed'
         });
       }
 

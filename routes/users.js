@@ -37,7 +37,7 @@ router.get('/', (req, res, next) => {
 
 router.post('/signup', (req, res) => {
   Users.createUser(req.body).then(data => {
-    console.log(data);
+
     if(!data.success) {
       res.sendStatus(409);
       res.json({ message: err });
@@ -49,8 +49,6 @@ router.post('/signup', (req, res) => {
       token: userToken,
       user: data.email
     }
-
-    console.log(userInfo);
 
     res.json(userInfo);
   })
@@ -92,6 +90,5 @@ router.post('/login', (req, res) => {
   });
 
 });
-
 
 module.exports = router;

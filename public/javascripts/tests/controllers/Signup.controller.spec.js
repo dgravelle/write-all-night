@@ -62,7 +62,7 @@ describe('Signup Controller', () => {
         SignupController.form = form;
 
         SignupController.handleRegistration(form).then(data => {
-          expect(data).toEqual('Sorry, that email is already in use');
+          expect(data).toEqual('failed');
         });
 
         httpBackend.flush();

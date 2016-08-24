@@ -16,7 +16,7 @@
       $scope.error;
 
       vm.login = function (user) {
-        UserService.login(user).then(user => {
+        return UserService.login(user).then(user => {
           console.log(user);
           if (typeof user.data === 'string') {
             $scope.error = user.data;
@@ -31,6 +31,7 @@
           }
         })
         .catch(err => {
+          return 'failed'
           console.log(err);
         })
       }

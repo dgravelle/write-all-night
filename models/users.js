@@ -19,12 +19,11 @@ Users.createUser = (data) => {
         data[0].success = 'true'
         delete data[0].pass_hash;
 
-        console.log(`user created `, data);
         resolve(data[0]);
       })
       .catch(err => {
         err.success = false;
-        console.log('error in user model: ', err);
+        // console.log('error in user model: ', err);
         reject(err);
       });
     });

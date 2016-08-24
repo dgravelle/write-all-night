@@ -37,19 +37,16 @@ describe('Users Service', () => {
         .respond(200, {
           id: 1,
           token: 'token',
-          user: 'sample@email.com'
+          user: 'sample@user.com'
         });
-
-
 
         userService.login({ email: 'sample@user.com', password: 'password' }).then(data => {
-                    
-        })
-        .catch(err => {
-          console.log(err);
+          expect(win.localStorage.id).toEqual('1');
+          expect(win.localStorage.token).toEqual('token');
+          expect(win.localStorage.user).toEqual('sample@user.com');
         });
 
-
+        httpBackend.flush();
     });
   });
 

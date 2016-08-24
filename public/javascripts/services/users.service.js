@@ -19,7 +19,6 @@
         var deferred = $q.defer();
 
         return $http.post('/users/login', user).then(data => {
-
           if (data.status >= 400) {
             deferred.reject(data);
 
@@ -59,7 +58,7 @@
         var deferred = $q.defer();
 
         return $http.post('/users/signup', user).then(data => {
-          console.log(data);
+
           if (data.status >= 400) {
             deferred.reject(data);
 
@@ -75,7 +74,7 @@
           }
         })
         .catch(err => {
-          console.log(err);
+
           deferred.reject(err);
 
           return deferred.promise;
