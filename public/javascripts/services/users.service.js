@@ -11,6 +11,8 @@
     function UserService($http, $q, $window) {
       const self = this;
 
+      self.currentUser = {};
+
       self.logOut = function() {
         localStorage.clear();
       }
@@ -41,16 +43,16 @@
         });
       }
 
-      self.currentUser = {};
+
 
       self.setCurrentUser = function(user) {
-        this.currentUser = user;
+        self.currentUser = user;
       }
 
       self.getUser = function(id) {
         return $http.get('/users/' + id).then(user => {
           this.setCurrentUser(user.data);
-          return this.currentUser;
+          return self.currentUser;
         });
       }
 
@@ -82,4 +84,4 @@
       }
     }
 
-})()
+})();
