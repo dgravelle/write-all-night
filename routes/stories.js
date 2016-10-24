@@ -11,7 +11,6 @@ function StoryProgress() {
   return knex('story_progress');
 }
 
-
 router.post('/', (req, res) => {
   Stories().insert(req.body, '*').then(story => {
     res.json(story);
@@ -23,6 +22,7 @@ router.post('/', (req, res) => {
 
 router.post('/saveContent/:id', (req, res) => {
   const id = req.params.id;
+  
   Stories().where({ id: id }).update({ 'story_content': req.body.content }).then(data => {
     res.json('ok');
   })
@@ -32,7 +32,6 @@ router.post('/saveContent/:id', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-
   Stories().select().where({ id: req.params.id }).first().then(story => {
     res.json(story);
   })
@@ -45,7 +44,6 @@ router.get('/all/:id', (req, res) => {
   const user_id = req.params.id;
 
   Stories().select().where({ user_id: user_id }).then(stories => {
-    // console.log(stories);
     res.json(stories);
   })
   .catch(err => {
@@ -58,7 +56,6 @@ router.get('/latest/:id', (req, res) => {
   const user_id = req.params.id;
 
   StoryProgress().select().where({ user_id: user_id }).first().then(latest => {
-    // console.log('latest', latest);
     if (!latest) {
       res.json('no stories')
     }
